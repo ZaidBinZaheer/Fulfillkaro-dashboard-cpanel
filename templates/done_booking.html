@@ -1,0 +1,93 @@
+<!-- <!doctype html>
+<html lang="en"> -->
+	{%load static%}
+
+  <head>
+  	<title>Table 03</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="{%static 'css/style.css' %}">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">All Bookings !!! </h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<!-- <h4 class="text-center mb-4">List of All Bookings made: </h4> -->
+					<div class="table-wrap">
+						<table class="table">
+					    <thead class="thead-primary">
+					      <tr>
+					        <th>CN Number</th>
+							<th>Username</th>
+					        <th>Name</th>
+					        <th>Mobile Number</th>
+					        <th>Email</th>
+					        <th>Address</th>
+							<th>Destination Address</th>
+					        <th>Product Detail</th>
+					        <th>Weight</th>
+					        <th>Pieces</th>
+							<th>Special Handling</th>
+							<th>Service Type</th>
+					        <th>Pickup City</th>
+					        <th>Cash Amount</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+
+						
+                            {% for book in all_bookings%}
+                         
+
+					      <tr>
+					        <th scope="row" class="scope" > {{book.cn_number}} </th>
+					        <td> {{book.username}}</td>
+					        <td> {{book.name}}</td>
+					        <td> {{book.mobile_number}} </td>
+					        <td> {{book.email}} </td>
+							<td> {{book.address}}</td>
+							<td> {{book.destination_city}}</td>
+							<td> {{book.product_detail }} </td>
+							<td> {{book.weight}} </td>
+							<td> {{book.pieces}} </td>
+							<td> {{book.special_handling}} </td>
+							<td> {{book.service_type}} </td>
+							<td> {{book.pickup_city}} </td>
+							<td> {{book.cash_amount}} </td>
+					        <td> <form method="POST" action="delete_booking">
+                                {% csrf_token%}
+                                <input class="btn btn-danger" type="submit" name="delete_record" value={{book.cn_number}}  readonly >
+                                    
+                            
+                            </form> </td>
+					      </tr>
+                          {% endfor %} 
+	
+					    </tbody>
+					  </table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src= "{%static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/popper.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/main.js'%}"></script>
+
+	</body>
+<!-- </html> -->
+

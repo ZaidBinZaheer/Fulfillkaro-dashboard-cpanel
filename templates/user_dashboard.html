@@ -1,0 +1,1276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="{%static 'css/style.css' %}">
+  <title> FulfillKaro.pk - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="{%static 'css/style.css' %}">
+  <!-- Favicons -->
+  <link href='{%static  "assets/img/favicon.png" %}' rel="icon">
+  <link href='{%static "assets/img/apple-touch-icon.png" %}' rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href='{%static "assets/vendor/aos/aos.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/bootstrap-icons/bootstrap-icons.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/boxicons/css/boxicons.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/glightbox/css/glightbox.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/swiper/swiper-bundle.min.css" %}' rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href='{%static "assets/css/style.css" %}' rel="stylesheet" %}'>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.1.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+
+  <style>
+
+@media (max-width: 1199px) {
+  #header {
+    left: 0px;
+  }
+  #main {
+    margin-left: 300px;
+  }
+}
+    .team-member-info {
+      display: none;
+    }
+
+    #hero {
+      width: 100%;
+      height: 100vh;
+      background: url(static/assets/img/courier5.jpg) top center;
+      background-size: cover;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      background-color: cornflowerblue;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      /* position: fixed; */
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+
+    .booking-table-popup {
+      overflow: scroll;
+      width: 700px;
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 20px;
+      right: 20px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    .booking-form-popup {
+      overflow: scroll;
+      width: 700px;
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 20px;
+      right: 20px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: auto;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    .booking-form-container {
+      max-width: 2000px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* Full-width input fields */
+    .booking-form-container input[type=text],
+    .booking-form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* When the inputs get focus, do something */
+    .booking-form-container input[type=text]:focus,
+    .booking-form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Set a style for the submit/login button */
+    .booking-form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    .form-container .next-btn {
+      background-color: cornflowerblue;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    /* Add some hover effects to buttons */
+    .booking-form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    .alert {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 20px;
+      z-index: 1000;
+      background-color: #f44336;
+      color: white;
+      opacity: 1;
+      transition: opacity 0.6s;
+      margin-bottom: 15px;
+    }
+
+    .alert.success {
+      background-color: #04AA6D;
+    }
+
+    .alert.info {
+      background-color: #2196F3;
+    }
+
+    .alert.warning {
+      background-color: #ff9800;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+
+
+    .right-side-content {
+      margin: 70px;
+      width: 70%;
+      float: right;
+    }
+
+    .rq {
+      color:
+        #FF0000;
+      font-size: 10pt;
+    }
+  </style>
+  <script>
+
+
+
+
+    function hide_searching_section() {
+      document.getElementById("searching_section").style.display = "none";
+    }
+    function show_searching_section() {
+      document.getElementById("searching_section").style.display = "block";
+    }
+    function hideStats() {
+      document.getElementById("statistics_section").style.display = "none";
+    }
+    function showOrHideStats() {
+      var x = document.getElementById("stat_data").textContent;
+      if (x == "") {
+        document.getElementById("statistics_section").style.display = "none";
+      }
+      else {
+        document.getElementById("statistics_section").style.display = "block";
+      }
+    }
+
+    function hide_booking_form() {
+      document.getElementById("BookingForm").style.display = "none";
+
+    }
+    function openOrHideBookingForm() {
+      var x = document.getElementById("cn").value;
+      if (x == 'readonly') {
+        document.getElementById("BookingForm").style.display = "none";
+      }
+      else {
+        document.getElementById("BookingForm").style.display = "block";
+      }
+    }
+
+
+    function showOrHideLessDetailedTable() {
+      if ($('#LessDetailedTable td').length == 0) {
+        document.getElementById("less_detailed_table").style.display = "none";
+      }
+      else {
+        document.getElementById("less_detailed_table").style.display = "block";
+      }
+    }
+
+    function showOrHideLessDetailedTableCnSearch() {
+
+      var x = document.getElementById("tableData").textContent;
+      if (x.length < 4) {
+        document.getElementById("less_detailed_table_cn_search").style.display = "none";
+      }
+      else {
+        document.getElementById("less_detailed_table_cn_search").style.display = "block";
+      }
+    }
+    function removeFields() {
+
+      var element1 = document.getElementById("p" + document.getElementById("vox").textContent)
+      var element2 = document.getElementById("q" + document.getElementById("vox").textContent)
+    
+      element1.remove();
+      element2.remove();
+
+      document.getElementById("vox").textContent = parseInt(document.getElementById("vox").textContent) - 1
+
+    }
+
+    function addMoreFields() {
+      document.getElementById("vox").textContent = parseInt(document.getElementById("vox").textContent) + 1
+      const para = document.createElement("div");
+      const node1 = document.createElement("input");
+      const node2 = document.createElement("input");
+      node2.type = "number";
+
+      node1.id = "p" + document.getElementById("vox").textContent;
+      node2.id = "q" + document.getElementById("vox").textContent;
+      node1.placeholder = "Enter Product Name";
+      node2.placeholder = "Enter Quantity";
+      node1.name = "p" + document.getElementById("vox").textContent;
+
+      node2.name = "q" + document.getElementById("vox").textContent;
+      // alert(node2.name)
+
+      para.appendChild(node1);
+      para.appendChild(node2);
+
+      const element = document.getElementById("div1");
+      const child = document.getElementById("p1");
+      element.insertBefore(para, child);
+    }
+
+function hideReq(){
+  document.getElementById("rq_n").style.display="none";
+  document.getElementById("rq_mn").style.display="none";
+  // document.getElementById("rq_e").style.display="none";
+  document.getElementById("rq_dc").style.display="none";
+  document.getElementById("rq_a").style.display="none";
+  document.getElementById("rq_w").style.display="none";
+  document.getElementById("rq_crn").style.display="none";
+  // document.getElementById("rq_fn").style.display="none";
+  // document.getElementById("rq_sh").style.display="none";
+  document.getElementById("rq_p").style.display="none";
+  document.getElementById("rq_ca").style.display="none";
+}
+
+
+    function show_full_detailed_table() {
+      document.getElementById("full_detailed_table").style.display = "block";
+    }
+    function hide_full_detailed_table() {
+      document.getElementById("full_detailed_table").style.display = "none";
+    }
+    function hide_less_detailed_table() {
+      document.getElementById("less_detailed_table").style.display = "none";
+    }
+    function showOrhide_full_detailed_table() {
+      if ($('#FullDetailedTable td').length == 0) {
+        document.getElementById("full_detailed_table").style.display = "none";
+      }
+      else {
+        document.getElementById("less_detailed_table").style.display = "none";
+        document.getElementById("ful_detailed_table").style.display = "block";
+      }
+    }
+
+    function closeAlert() {
+      document.getElementById("message-box").style.display = "none";
+    }
+
+    function showOrHideProductSection() {
+      if ($('#productTable td').length == 0) {
+        document.getElementById("product_section").style.display = "none";
+      }
+      else {
+        document.getElementById("product_section").style.display = "block";
+      }
+
+    }
+    function showOrHideMsg() {
+      if (document.getElementById("msg") != null) {
+        alert(document.getElementById("msg").textContent)
+      }
+    }
+
+
+    function validate() {
+
+      var booking_ca = document.getElementById('booking_ca');
+      // var booking_fn = document.getElementById('booking_fn');
+      var booking_crn = document.getElementById('booking_crn');
+      var booking_weight = document.getElementById('booking_weight');
+      var booking_address = document.getElementById('booking_address');
+      var booking_dc = document.getElementById('booking_dc');
+      // var booking_email = document.getElementById('booking_email');
+      var booking_mn = document.getElementById('booking_mn');
+      var booking_name = document.getElementById('booking_name');
+      // var booking_sh = document.getElementById('booking_sh');
+      var booking_p = document.getElementById('p1');
+
+      var text = "Make sure";
+      var valid = true;
+      if (booking_p.value == "") {
+        document.getElementById("rq_p").style.display="block";
+        text += " the Product  ";
+        valid = false;
+      }
+      if (booking_ca.value == "") {
+        document.getElementById("rq_ca").style.display="block";
+        text += " the Cash Amount  ";
+        valid = false;
+      }
+
+      // if (booking_fn.value == "") {
+      //   document.getElementById("rq_fn").style.display="block";
+      //   text += (!valid ? '& ' : '') + " the Flyer Number "
+      //   valid = false;
+
+      // }
+      if (booking_crn.value == "") {
+        document.getElementById("rq_crn").style.display="block";
+        text += (!valid ? '& ' : '') + " the Customer Reference Number ";
+        valid = false;
+
+      }
+      if (booking_weight.value == "") {
+        document.getElementById("rq_w").style.display="block";
+        text += (!valid ? '& ' : '') + " the Weight ";
+        valid = false;
+      }
+      if (booking_address.value == "") {
+        document.getElementById("rq_a").style.display="block";
+        text += (!valid ? '& ' : '') + " the Address ";
+        valid = false;
+      }
+      if (booking_dc.value == "") {
+        document.getElementById("rq_dc").style.display="block";
+        text += (!valid ? '& ' : '') + " the Destination City ";
+        valid = false;
+      }
+      // if (booking_email.value == "") {
+      //   document.getElementById("rq_e").style.display="block";
+      //   text += (!valid ? '& ' : '') + " the Email ";
+      //   valid = false;
+      // }
+      if (booking_mn.value == "") {
+        document.getElementById("rq_mn").style.display="block";
+        text += (!valid ? '& ' : '') + " the Mobile Number ";
+        valid = false;
+      }
+      if (booking_name.value == "") {
+        document.getElementById("rq_n").style.display="block";
+        text += (!valid ? '& ' : '') + " the Consignee Name ";
+        valid = false;
+      }
+      // if (booking_sh.value == "") {
+      //   document.getElementById("rq_sh").style.display="block";
+      //   text += (!valid ? '& ' : '') + " the Special Handling ";
+      //   valid = false;
+      // }
+
+
+      if (!valid) {
+        text += " is Filled";
+        alert(text);
+        return false;
+      }
+      return true;
+    }
+
+function hide_product_section(){
+  document.getElementById("product_section").style.display="none";
+}
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<!-- right-side-content -->
+<body class=""
+  onload="hideReq(), hide_searching_section(), showOrHideMsg(), showOrHideProductSection() , showOrHideStats(), openOrHideBookingForm(), showOrhide_full_detailed_table(), showOrHideLessDetailedTable(), showOrHideLessDetailedTableCnSearch() ">
+
+  {% for message in messages %}
+
+  <div hidden class="alert" id="message-box">
+    <span onclick="closeAlert()" class="closebtn">&times;</span>
+    <strong id="msg"> {{message}} </strong>
+  </div>
+
+  {% endfor %}
+
+
+
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src=' {%static "assets/img/courier2.jpg" %}' alt="" class="img-fluid rounded-circle">
+
+        <h1 class="text-light"> Welcome, {{user.username}} !</h1>
+
+        <div class="social-links mt-3 text-center">
+          <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
+          <a href="https://www.facebook.com/fulfillkaro" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/fulfillkaro/" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+         
+          <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> -->
+          <!-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul style="height: 335px ;">
+          <!-- <li><a href="goto_home" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Home</span></a></li> -->
+          <!-- <li><a href="#about" class="nav-link scrollto"><i class="bx bx-server"></i> <span>About</span></a></li> -->
+
+
+          <form method="POST" action="getStatistics">
+            {% csrf_token%}
+            <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden>
+            <button style="background-color:#040b14;color:darkgrey ; border: none;" type="submit">
+              <li type="submit"><a class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                  <span class="team-member"> Home </span></a></li>
+            </button>
+          </form>
+
+          <form method="POST" action="get_last">
+            <input type="text" name="username" value={{user.username}} hidden>
+            {% csrf_token %}
+            <button style="background-color:#040b14;color:darkgrey ;border: none; " type="submit">
+              <li><a onclick="openBookingForm()" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>
+                    Book Parcel</span></a></li>
+            </button>
+          </form>
+
+
+
+
+
+
+          <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden>
+
+          <li class="team-member" onclick="show_searching_section(), hideStats(), hide_booking_form(), hide_product_section()"><a
+              class="nav-link scrollto "><i class="bx bx-book-content"></i>
+              <span style="color:darkgrey ;" class="team-member">Track Your Booking </span></a></li>
+
+
+          <!-- <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>View Booking</span></a></li> -->
+
+
+          <form method="POST" action="showProducts">
+            {% csrf_token %}
+            <input type="text" name="username" value={{user.username}} hidden>
+            <input type="text" name="amiadmin" value="0" hidden >
+            <button style="background-color:#040b14;color:darkgrey ;border: none; " type="submit">
+              <li><a onclick="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>
+                    Products </span></a></li>
+            </button>
+          </form>
+
+          <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+
+          <button style="background-color:cornflowerblue;">
+            <li><a href="logout" class=""> <span style=" color:black;  ">Logout </span></a></li>
+          </button>
+
+
+          <!-- <button class="open-button " onclick="openForm()">Login or Sign up</button> -->
+
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main id="main" style="padding-left: 20px ; padding-right: 20px ;">
+<br><br>
+    <h1 style="text-align:center ;"><strong>User Dashboard </strong> </h1>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+  <!-- =========== Statistics =============== -->
+  <!-- ICONS FROM https://icons.getbootstrap.com/ -->
+
+
+  <section id="statistics_section" class=" facts">
+    <!-- team-member-info"> -->
+    <div class="row no-gutters">
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
+        <div class="count-box">
+          <i class="bi bi-bar-chart-line-fill"></i>
+          <span id="stat_data">{{total_bookings}}</span>
+
+          <p><strong>Total Orders</strong></p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
+        <div class="count-box">
+          <i class="bi bi-check-square-fill"></i>
+          <span>{{total_delivered_bookings}} </span>
+          <p><strong>Total Delivered Parcels </strong> </p>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
+        <div class="count-box">
+          <i class="bi bi-arrow-clockwise"></i>
+          <span> {{total_returned_bookings}} </span>
+          <p><strong>Total Returned Bookings </strong> </p>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
+        <div class="count-box">
+          <i class="bi bi-credit-card-2-front-fill"></i>
+          <span> Rs. --- </span>
+          <p><strong>Payment Last Month</strong> </p>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
+        <div class="count-box">
+          <i class="bi bi-truck"></i>
+          <span>{{delivery_rate}} % </span>
+          <p><strong>Delivered Rate</strong> </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
+        <div class="count-box">
+          <i class="bi bi-bar-chart-line"></i>
+          <span>{{return_rate}} % </span>
+          <p><strong>Return Rate</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- =========== Statistics END =============== -->
+
+
+  <!-- ========= Search Record Form ============ -->
+
+  <section id="searching_section">
+    <form name="form1" method="POST" action="searchRecord">
+      {% csrf_token %}
+      <input type="text" name="username" value={{user.username}} hidden>
+      <label> <strong> Consignment #: </strong> </label> <br>
+      <input
+        style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+        type="text" name="cn_number" placeholder="Enter CN Number" id="search_cn">
+
+      <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
+      </button> <br><br>
+      <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+    </form>
+
+    <!-- Data From -->
+    <form name="form1" method="POST" action="searchDateWise">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-4">
+
+          <input type="text" name="username" value={{user.username}} hidden>
+          <label> <strong> Date From: </strong> </label> <br>
+          <input
+            style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+            type="date" placeholder="dd-mm-yyyy" name="from_date" id="search_fd">
+
+          <!-- <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br> -->
+          <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+
+          <!-- Date From End -->
+
+        </div>
+        <div class="col-4">
+          <!------------ Date To ------------>
+
+          <label> <strong> Date To: </strong> </label> <br>
+          <input
+            style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+            type="date" placeholder="dd-mm-yyyy" name="to_date" id="search_td">
+          <br><br>
+
+
+
+          <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+        </div>
+        <div class="col-4"><br>
+          <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
+          </button> <br><br>
+        </div>
+      </div>
+    </form>
+  </section>
+  <!------------- Date To End ------------->
+
+  <!-- =========== Search Record End =============== -->
+
+
+  <!-- =========== Booking Form =============== -->
+
+  <section id="BookingForm">
+    <div class="" id="bookingForm">
+
+      <form name="form1" method="POST" action="after_booking" class="booking-form-container">
+        {% csrf_token %}
+        <h1 style="font-family:fantasy; text-align: center;">Booking Form</h1><br><br>
+        <div class="row">
+          <div class="col-6">
+            <div class=" ">
+              <label class="label">CN Number</label>
+              <input id="cn" class=" " type="text" name="cn_number" value={{last_cn_num}} readonly>
+            </div>
+          </div>
+          <div class=" col-6">
+            <div>
+              <label class="label">Username</label>
+              <input type="text" name="username" value="{{user.username}}" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Name</label>
+              <p class="rq" id="rq_n">*Required Field </p>
+              <input type="text" name="name" placeholder="Consignee Name" id="booking_name">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Mobile Number</label>
+              <p class="rq" id="rq_mn">*Required Field </p>
+              <input class=" " type="text" name="mobile_number" placeholder="03XX-XXXXXXX" id="booking_mn">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Email</label>
+              <!-- <p class="rq" id="rq_e">*Required Field </p> -->
+              <input class=" " type="text" name="email" placeholder="abc123@xyz.com" id="booking_email">
+            </div>
+          </div>
+          <div class="     col-6">
+            <label class="label">Destination City</label>
+            <p class="rq" id="rq_dc">*Required Field </p>
+            <div class="rs-select2 js-select-simple select--no-search">
+              <select style="width:400px; height: 40px; " name="destination_city" id="booking_dc">
+                <option disabled="disabled" selected="selected">Choose option</option>
+                <option> ABBASPUR (A.K) </option><option> Abbottabad </option><option> ABDUL HAKIM </option><option> ABOHA </option><option> ADDA 46 CHAK S </option><option> ADDA AUJLA KALA </option><option> ADDA PAKHI MORE </option><option> ADDA PENSRA </option><option> ADDA PHLOOR ONL </option><option> ADDA THIKRIWALA </option><option> ADIL PUR </option><option> AGHAR JAMALPUR </option><option> AGWANA </option><option> AHMAD NAGAR </option><option> Ahmad Pur East </option><option> Ahmad Pur Sial </option><option> AKAL GARH (A.K) </option><option> AKORA KHATTAQ </option><option> AKRI </option><option> ALI PUR SYEDAN </option><option> ALI ZAI KURRAM </option><option> Alipur </option><option> alipur chattha </option><option> ALIPUR SAYYADAN </option><option> AMAN DARA </option><option> AMBOR AREA </option><option> AMBRIALA CHOWK </option><option> AMIN ABAD </option><option> AMIR PUR MANGAN </option><option> ANOI SROHTA(A.K </option><option> ARIFABAD </option><option> Arifwala </option><option> ARIJA </option><option> ASTORE </option><option> ATTAR SHISHA </option><option> Attock </option><option> ATTOCK KHURD </option><option> ATTOWALA </option><option> AWAGUT </option><option> AWAN ABAD(BATHI </option><option> AWARAN </option><option> AZIZ ABAD (A.K. </option><option> AZIZ CHAK </option><option> BABRI BANDA </option><option> BACHA BAND </option><option> BADAH </option><option> Badin </option><option> BADOMALHI </option><option> BADSHAHPUR </option><option> BAGGAN </option><option> Bagh (a.k.) </option><option> BAGNOTER </option><option> Bahawalnagar </option><option> Bahawalpur </option><option> BAHUWAL </option><option> BALA GARHI </option><option> BALAKOT </option><option> BALOKHEL CITY </option><option> BANGLA YATEEM W </option><option> Bannu </option><option> BARIKOT </option><option> BARKHAN </option><option> BARNALA (A.K) </option><option> BASSER PUR </option><option> BASTI FUJA </option><option> Batgram </option><option> BATHRUI (A.K) </option><option> Batkhela </option><option> BAZARGAI </option><option> BEESHAM </option><option> BEHAL </option><option> BELA </option><option> BEWAL </option><option> BHABRRA </option><option> BHAGATANWALA </option><option> BHAGOWAL KALAN </option><option> BHAGWAL </option><option> Bhai Pheru </option><option> Bhakkar </option><option> BHALL </option><option> Bhalwal </option><option> BHAN SAEED ABAD </option><option> BHARA KHU </option><option> BHAUN </option><option> BHERA </option><option> BHIKARI KALAN </option><option> BHIKI SHARIF </option><option> BHIKO MORE </option><option> Bhimber A. K </option><option> BHIT SHAH </option><option> BHONE </option><option> BHOPALWALA </option><option> BHOWANJ </option><option> BHRING (A.K) </option><option> BHUBBAR </option><option> BHUDIAL </option><option> BHURBAN PEARL C </option><option> BIDDER MARJAN </option><option> BLOOUCH (A.K.) </option><option> BOKEN MORE </option><option> BONGA HAYAT </option><option> BROTHA </option><option> BRUND BATHA(A.K </option><option> BUCHERI </option><option> BUNN BEHK (A.K) </option><option> BUNNER </option><option> Burewala </option><option> BURG ATTARI </option><option> CADET COLL. LOW </option><option> CADET COLL. SUN </option><option> CADET COLLEGE L </option><option> CADET COLLEGE(K </option><option> Chak </option><option> CHAK 168/10R </option><option> CHAK ABDULLAH </option><option> CHAK BAQAR SHAH </option><option> CHAK BAZAAR(A.K </option><option> CHAK BELI KHAN </option><option> CHAK JAMAL </option><option> CHAK JHUMRA </option><option> CHAK KAMAL(SEHN </option><option> CHAK PIRANA </option><option> CHAK SWARI(A.K) </option><option> CHAKAR KOT KOHA </option><option> CHAKDARA </option><option> CHAKLALA </option><option> CHAKOTHI (A.K.) </option><option> Chakwal </option><option> CHAMAN </option><option> CHAMANKOT (A.K) </option><option> CHAMBI </option><option> CHANAN GAKKHAR </option><option> CHANGA MANGA </option><option> CHAR BAGH (SWAT </option><option> Charsadda </option><option> CHASHMA </option><option> CHASHMA COLNY. </option><option> CHASHMA(WAPDA-A </option><option> CHATTAR AREA </option><option> CHAWINDA </option><option> CHECHIAN (A.K.) </option><option> CHELLA BANDI (A </option><option> CHENAB NAGAR </option><option> Chicha Watni </option><option> CHILAS </option><option> Chiniot </option><option> Chistian </option><option> Chitral </option><option> CHITTAR PARI </option><option> Choa Saidan Sha </option><option> CHOHAR JAMALI </option><option> CHOMKO </option><option> CHORAI (A.K) </option><option> CHOTI </option><option> CHOTTAGLA (A.K) </option><option> CHOWK MUNDA </option><option> Chowk Sarwar Sh </option><option> CHOWKI (A.K) </option><option> CHUND </option><option> CHUNG </option><option> DAD LAGHARI </option><option> Dadu </option><option> Dadyal (a.k) </option><option> DAHEWAL </option><option> DAIRA DIN PANNA </option><option> DALWAL </option><option> DAMMAS (A.K) </option><option> DANDA SHAH BILA </option><option> DANDLI (A.K) </option><option> DANDOT </option><option> DARA ADAM KHEL </option><option> DARBAR(HAJIABAD </option><option> DARBELLO </option><option> DARGAI </option><option> DARRORA </option><option> DARROSH </option><option> DAR-UL-ISLAM </option> CO<option> DARYA KHAN MARI </option><option> Daska </option><option> DATOTE (A.K.) </option><option> DAUDKHEL </option><option> DAUL TALA </option><option> DAULAT PUR </option><option> DAULATPUR SAFAN </option><option> DAUR </option><option> Deena </option><option> Depalpur </option><option> Dera ala yar </option><option> DERA BAKHA </option><option> Dera Ghazi Khan </option><option> Dera Ismail Khan </option><option> DERA MALLA SIN </option><option> Dera Murad Jama </option><option> DEWAN SHARIF (A </option><option> DHABEJI </option><option> DHADAR </option><option> DHALL GHAIR </option><option> DHANDER (KALAN) </option><option> DHANGRI BALA (A </option><option> DHANI BOMBIAN </option><option> DHANOT </option><option> DHARANWALA </option><option> Dharki </option><option> DHERI JULAGRAM </option><option> DHODA </option><option> DHOK DAURA (A.K </option><option> DHOKE BADIAL </option><option> DHOKE MAKEN </option><option> DHORIA </option><option> DHUDIAL </option><option> DHUNNI </option><option> DHURKANA </option><option> DHURNAL </option><option> DIGRI </option><option> DIJKOT </option><option> Dinga </option><option> Dir </option><option> DOKOTA </option><option> DOKRI </option><option> DOLTA </option><option> DOMAIL </option><option> DONGI (A.K) </option><option> DOREY </option><option> DOREY WALA </option><option> DULEWALA </option><option> Dunya Pur </option><option> EASAKHEL </option><option> EIDGAH ROAD </option><option> EISER (A.K) </option><option> Elahabad </option><option> Faisalabad </option><option> FAIZPUR KHURD </option><option> Faqir Wali </option><option> FAQIRABAD </option><option> FAROOQA </option><option> Farooqabad </option><option> Fateh Jang </option><option> Fatehpur </option><option> FATEHPUR (CHAK </option><option> FAZILPUR DHUNDH </option><option> Feroz Watwan </option><option> Ferozwala </option><option> FORT ABBAS </option><option> G MAHARAJA </option><option> G.S.SUGAR MILLS </option><option> GADOON AMAZAI </option><option> GAGGO MANDI </option><option> Gakkhar Mandi </option><option> GALA KNATHA </option><option> GAMBAT </option><option> GARH MORE </option><option> GARHI DOPATTA </option><option> GARHI DOULAT ZA </option><option> GARHI HABIB ULL </option><option> GARHI KHERO </option><option> GARHI YASIN </option><option> GARIH KHAIRO </option><option> Gawadar </option><option> Ghari Khero </option><option> GHARIBWAL CEMEN </option><option> Gharo </option><option> GHAZI </option><option> GHAZIABAD </option><option> GHAZIKOT TOWNSH </option><option> Ghotki </option><option> Ghous Pur </option><option> GHUENKE </option><option> GHULAM ISHAQ UN </option><option> GHUMAN WALA </option><option> GIDANI </option><option> GILGIT </option><option> GLOTIAN MORR </option><option> GOGERA </option><option> GOHARABAD </option><option> GOI </option><option> Gojra </option><option> GOJRA ( MANDI B </option><option> GOLARCHI </option><option> GOMAL UNIVERSIT </option><option> GONDAL </option><option> GOPAL PUR </option><option> GOTH MACHI </option><option> GROAT SHEHAR/CA </option><option> Guddu Barrage </option><option> GUJAR GARHI </option><option> Gujar Khan </option><option> GUJARPUR </option><option> Gujranwala </option><option> GUJRANWALA CANT </option><option> Gujrat </option><option> GULABAD </option><option> GULAN KHEL </option><option> GULPUR (A.K) </option><option> GUMBAT </option><option> GUMBAT MERA </option><option> HABIBABAD </option><option> HABIBULLAH COLO </option><option> Hafizabad </option><option> HAJI ABAD </option><option> HAJIABAD (A.K) </option><option> HAJIABAD ICHRIA </option><option> HAJIRA (A.K.) </option><option> HAJIWALA </option><option> HALA </option><option> HALANI </option><option> HAMID </option><option> HAMID PUR (A.K) </option><option> HANGU </option><option> HARAPPA STATION </option><option> HARI CHAND </option><option> HARI GHEL </option><option> HARIAH RAILWAY </option><option> Haripur </option><option> HARIYAWALA </option><option> HARNAI </option><option> HARNAL </option><option> HARNO </option><option> Haroonabad </option><option> HASEEB WAQAS MI </option><option> Hasilpur </option><option> Hassan Abdal </option><option> HATI </option><option> HATTAR IND. EST </option><option> HATTIAN </option><option> HAVELIAN </option><option> HAYA SERAI </option><option> HAYATABAD </option><option> HAZOOR PUR </option><option> Hazro </option><option> HEAD BALOKI ROA </option><option> HEAD WORKS(BTK) </option><option> HERA (CHAK 134 </option><option> HINGORNO </option><option> HOLAR (A.K) </option><option> Hub Chowki </option><option> HUJRA SHAH MUKE </option><option> HYDER ABAD THAL </option><option> Hyderabad </option><option> IKHLAS (DIST. A </option><option> ISLAM GARH(A.K) </option><option> ISLAM PURA JABB </option><option> Islamabad </option>
+                <option> ISLAMKOT </option><option> J CAMP </option><option> Jacobabad </option><option> JAFFARABAD </option><option> JAHANIA </option><option> JAISERWALA </option><option> JALABAD (A.K.) </option><option> JALAL PUR BHATT </option><option> Jalal Pur Jattan </option><option> JALALA </option><option> JALALPUR PIRWAL </option><option> JALALPUR SHARIF </option><option> JAMAL DIN WALI </option><option> JAMAL GARI </option><option> JAMAL PUR </option><option> JAMAN SHAH(SURS </option><option> Jampur </option><option> Jamshoro </option><option> Jand </option><option> JAND NAGAR </option><option> Jaranwala </option><option> JARWAR </option><option> JATLAN (A.K.) </option><option> Jauhrabad </option><option> JAUNPUR </option><option> Jehangira </option><option> JHAJRA EAST </option><option> JHAJRA WEST </option><option> JHAMPEER </option><option> Jhang </option><option> JHARIAN </option><option> JHAWARIYA </option><option> Jhelum </option><option> JHETEKE </option><option> JHOLANARA (A.K) </option><option> JHUDO </option><option> JHUGIAN </option><option> JIBBRAN MANDI </option><option> JINNAHABAD </option><option> JIWANI </option><option> JOHI </option><option> JOR (BUNNER) </option><option> JUGLOT </option><option> JUNA (A.K) </option><option> JUNDATHI (A.K) </option><option> Kabir Wala </option><option> KADHALA (A.K) </option><option> KAHNA NAO </option><option> KAHROR PAKKA </option><option> Kahuta </option><option> KAKOOL ( PMA) </option><option> KALA BAGH </option><option> KALA BAGH (P.A. </option><option> KALA SHAH KAKU </option><option> KALABAT </option><option> KALAH </option><option> KALAR KAHAR </option><option> KALARY MORE(A.K </option><option> KALASWALA </option><option> KALAT </option><option> KALHORO </option><option> KALLAR SAYDIAN </option><option> KALOR KOT </option><option> KAMALIA </option><option> KAMBER ALI KHAN </option><option> Kamoki </option><option> Kamra </option><option> KAMROTTY (A.K) </option><option> KANDAL SAYAN </option><option> KANDHKOT </option><option> Kandiaro </option><option> KANGANPUR </option><option> KANGRA </option><option> KANYAL </option><option> KANYAL (A.K) </option><option> Karachi </option><option> KARAM PUR </option><option> Karianwala </option><option> KARIMABAD(HUNZA </option><option> Kark </option><option> KARKRA TOWN(A.K </option><option> KARMABAD </option><option> KAROONDI </option><option> KAROR LAL EASAN </option><option> KASHMOOR </option><option> Kasur </option><option> KATLANG </option><option> KATTHA SUGHRAL </option><option> KERALA MAJHAN </option><option> KERYALA </option><option> KHAAL </option><option> KHABEKI </option><option> KHAD GUJRAN(A.K </option><option> KHADRO </option><option> KHAIGALA (A.K.) </option><option> KHAIR PUR MEERU </option><option> KHAIRABAD </option><option> Khairpur </option><option> KHAIRPUR NATHAN </option><option> KHAIRPUR TAMIAN </option><option> KHAIW WALI </option><option> KHALABAT SECTOR </option><option> KHALIQ ABAD(A.K </option><option> KHAN BELA </option><option> KHAN GAH DOGRAN </option><option> KHAN KA SHARIF </option><option> KHAN PUR DISTT. </option><option> KHANABAD (A.K) </option><option> Khanewal </option><option> Khangarh </option><option> Khanpur </option><option> KHANPUR MEHER </option><option> KHANPUR SHOMALI </option><option> KHAR (BAJORE AG </option><option> KHAR (BATKHELA) </option><option> KHARAN </option><option> Kharian </option><option> KHARICK </option><option> KHAT KALI </option><option> KHAWAJA TEXTILE </option><option> Khewra </option><option> KHIDAR WALA </option><option> KHIPRO </option><option> KHORE </option><option> KHORRA </option><option> KHOSKI </option><option> KHOTA </option><option> KHURATTA (A.K) </option><option> Khurrianwala </option><option> Khushab </option><option> Khuzdar </option><option> Kohat </option><option> KOHAT INDUSTRIA </option><option> KOHAT(CEMENT FA </option><option> KOHRI (A.K.) </option><option> KOT ABDUL MALIK </option><option> Kot Addu </option><option> KOT CHANDNAN </option><option> KOT DEJI </option><option> KOT DIGEE </option><option> KOT GHULAM MOHD </option><option> KOT ISLAM </option><option> KOT JAMEL (A.K) </option><option> KOT JE SING </option><option> KOT MITHAN </option><option> Kot Momin </option><option> KOT NAJEEB ULLA </option><option> KOT RADHA KISHA </option><option> KOT SUJAN SING </option><option> KOT SULTAN(BHAI </option><option> KOTA </option><option> Kotla Arab Ali </option><option> Kotli (a. K) </option><option> KOTLI LOHARAN </option><option> Kotri </option><option> KOULO TARRAR </option><option> KUFRI </option><option> KUNDIAN </option><option> Kunri </option><option> KUTHIALA SHEIKH </option><option> LACHI </option><option> LADHANA </option><option> Lahore </option><option> LAIDHER </option><option> LAKHI GHULAM SH </option><option> Lakki Marwat </option><option> LALA ZAR(CHAK 1 </option><option> Lalamusa </option><option> Lallian </option><option> LALPIR (THERMA </option><option> LALU RAWANK </option><option> Larkana </option><option> Lasbela </option><option> LAWRENCE COLLEG </option><option> LAWRENCEPUR </option><option> Layyah </option><option> LIAQATABAD(A.K) </option><option> LIAQATABAD(PIPL </option><option> Liaqatpur </option><option> Lodhran </option><option> LOOTHAR </option><option> LORALAI </option><option> LOWER TOPA </option><option> LUDDAN </option><option> MACH </option><option> MACHIKEY(FACTOR </option><option> MACHIWAL </option><option> MADINA MARKET </option><option> MAGHAL </option><option> Mailsi </option><option> MAIRA MATOOR </option><option> MAKADOOMPUR POK </option><option> MAKLI </option><option> Malakand </option><option> MALAKWAL </option><option> MALAN MANSOOR </option><option> MALHOONA MORE </option><option> MALIK PURA </option><option> MALIKWAL </option><option> MALOWAL </option><option> MAMON KANJAN </option><option> Manawala </option><option> Mandi Bahauddin </option><option> MANDI DHABA SIN </option><option> Mandi Faiz abad </option><option> MANDI HEERA SIN </option><option> MANDI SADIQ GUN </option><option> MANDI SAFDAR AB </option><option> MANDI SHAH JUIN </option><option> MANDI USMANWALA </option><option> MANDIAN </option><option> Mandra </option><option> Mandranwala </option><option> MANDURI KURRAM </option><option> Manga Mandi </option><option> MANGLA DAM </option><option> Mangla Hamlet (a.k.) </option><option> MANGLA INDUSTRI </option><option> Mansehra </option><option> MANSHERA CAMP </option><option> Mardan </option><option> MARDWAL </option><option> MARGAZ </option><option> MASHKAY </option><option> MASTUNG </option><option> Matiyari </option><option> Matli </option><option> MATTA (SWAT) </option><option> MAYAR </option><option> Mehar </option><option> Mehmoodkot </option><option> Mehrabpur </option><option> Mian Channu </option><option> MIAN M.SUGAR MI </option><option> MIANI </option><option> Mianwali </option><option> MINCHIN ABAD </option><option> Mingora (swat) </option><option> MIR PUR BAGHAL </option><option> MIR PUR SAKRO </option><option> MIRAN SHAH </option><option> MIROKHAN </option><option> Mirpur (a. K) </option><option> Mirpur Khas </option><option> Mirpur Mathelo </option><option> MIRUPR BATHORO </option><option> MITHA TIWANA </option><option> MITHI </option><option> MITHIANI </option><option> MITRANWALI </option><option> MITRO </option><option> MOHAR SHARIF </option><option> MOHARA GULSHER </option><option> MOHINUDIN PUR </option><option> MOHLANWAL </option><option> MOHMMADPUR DIWA </option><option> MOHRA NOORI </option><option> MOHUTA MOHRA </option><option> Mona Depot </option><option> MONG (A.K.) </option><option> MORGAH </option><option> Moro </option><option> MOUCH </option><option> MUBARAK PUR </option><option> MUJAHID ABAD (A </option><option> MULHAL MUGHALAN </option><option> Multan </option><option> MURALI WALA </option><option> MURID </option><option> MURID WALA </option><option> Muridke </option><option> Murree </option><option> MUSA </option><option> MUSLIM BAGH </option><option> MUSLIMABAD </option><option> Muzaffarabad(ak) </option><option> Muzaffargarh </option><option> NAKIYAL (A.K) </option><option> NAKKAH BAZAR(A. </option><option> Nankana Sahib </option><option> NAR (A.K.) </option><option> Narang Mandi </option><option> NARIAN SHARIF </option><option> narowal </option><option> NASEERA </option><option> Naseerabad </option><option> NAUDERO </option><option> Nawab Shah </option><option> NAWAN JANDANWAL </option><option> NAWAN SHER </option><option> NEHANG </option><option> NEW AFZALPUR(AK </option><option> NEW JATOI </option><option> NEW MOHALLA </option><option> NEWDARBAND TOWN </option><option> Nizamabad </option><option> NOMANPURA </option><option> NOONAWALI </option><option> NOOR SHAH </option><option> NOORIABAD </option><option> NOORPUR NORANGA </option><option> NOORPUR THAL </option><option> Nowshera </option><option> NOWSHERA DT. KH </option><option> NOWSHERA VIRKAN </option><option> Nowshero Feroz </option><option> NRTC(TELECOM ST </option><option> NUSHKI </option><option> Okara </option><option> OLYMPIA CHEMICA </option><option> OREMARA TOWN </option><option> OUGHI </option><option> P.O.F. (FACTORY </option><option> PACCA CHANG </option><option> PADRAR </option><option> PAHRIANWALI ADD </option><option> PAIGAH </option><option> PAKHWAL </option><option> PAKKA KHUH </option><option> Pakpattan </option><option> PANAG GALI (A.K </option><option> PANDI SABARWAL </option><option> PANDORE </option><option> PANG KASI </option><option> PANIAN </option><option> PANJEERA (A.K.) </option><option> Panjgour </option><option> Pano Aqil </option><option> PANYAM (A.K) </option><option> PANYIOLA (A.K.) </option><option> PAR NOWSHERA </option><option> PARACHINAR </option><option> PAROVA </option><option> Pasrur </option><option> PATTIKA (A.K.) </option><option> Pattoki </option><option> PCFL -HPFL </option><option> PERIAL </option><option> Peshawar </option><option> PHAKI SHAH MARD </option><option> PHALIA </option><option> PHULJI STATION </option>
+                <option> PHULLARWAN </option><option> Pind Dadan Khan </option><option> PIND HASHIM KHA </option><option> PIND KALAN(A.K) </option><option> PIND KHURD(A.K) </option><option> Pindi Bhattian </option><option> Pindi Gheb </option><option> PINDI GUJRAN </option><option> PIONEER CEMENT </option><option> PIR JAGI(CHAK 1 </option><option> PIR JO GOTH </option><option> Pirmahal </option><option> PISHIN </option><option> PITHORO </option><option> PLAK (A.K) </option><option> POTHA (A.K.) </option><option> POURMIANA </option><option> PUBLIC SCHOOL(A </option><option> PULENDRI (A.K) </option><option> PULL 111 CHAK </option><option> PULL BAGER </option><option> PULL MANDA (A.K </option><option> PULL NO. 12 MEL </option><option> PUNJAB SUGAR MI </option><option> PURAB KLAIR </option><option> PURAN </option><option> QABOOLA SHARIF </option><option> QADIRABAD </option><option> QADIRPUR RAWAN </option><option> QAIDABAD </option><option> Qalandarabad </option><option> QASBA GRT. CHAK </option><option> QAZI AHMAD </option><option> QILA DEDAR SING </option><option> QILA KALLARWALA </option><option> QILA SAIFULLAH </option><option> QILLAN (A.K.) </option><option> Quetta </option><option> Rabwa </option><option> RADHAN </option><option> RADHEN </option><option> Rahim Yar Khan </option><option> Rahwali </option><option> Raiwind </option><option> RAJA SADOKEY </option><option> RAJANA </option><option> Rajanpur </option><option> RAJAR </option><option> RAKHNI </option><option> RANGLA (A.K.) </option><option> RANGO </option><option> Rani Pur </option><option> RANJHI </option><option> RASHAKAI </option><option> RASOOL PUR TARR </option><option> RATODERO </option><option> Rawalakot (a.k) </option><option> Rawalpindi </option><option> Rawat </option><option> REHMANI NAGAR </option><option> REHMATABAD </option><option> RENALAKHURD </option><option> RIGHT BANK COLO </option><option> Risal Pur </option><option> Rohri </option><option> ROODO SULTAN </option><option> SABOOR SHARIF </option><option> SACOTE </option><option> Sadiqabad </option><option> SAEEDABAD </option><option> SAFDARABAD </option><option> SAGRI </option><option> SAHIB ABAD </option><option> Sahiwal </option><option> SAHIWAL (NAWAN </option><option> SAIDU SHARIF (S </option><option> SAKRAND </option><option> SALOI </option><option> SAMARO </option><option> Sambrial </option><option> SAMROR (A.K.) </option><option> Samundri </option><option> SANAWAN </option><option> SANDHIANWALI </option><option> SANDU GALI </option><option> SANGHAR </option><option> SANGHI </option><option> Sangla Hill </option><option> SARA-E- </option> KARISHAN<option> Sarai Alamgir </option><option> SARAI CHOWK </option><option> SARAI NAURANG </option><option> SARAI NAYMAT KH </option><option> SARANDA (A.K) </option><option> SARDARPUR </option><option> SARDHERI </option><option> Sargodha </option><option> SARKALAN </option><option> SARO ZAI </option><option> SAROKI </option><option> SARRAN (A.K.) </option><option> SARSAWA (A.K.) </option><option> SARWALA </option><option> SATIYANA </option><option> SATTRAH </option><option> SEHAR MANDI(A.K </option><option> SEHER BAGLA </option><option> SEHNSA (A.K.) </option><option> Sehwan </option><option> SHABQADAR </option><option> Shadadpur </option><option> SHADUN LUND </option><option> SHAH BAGH </option><option> SHAH DHER </option><option> SHAH PUR CHAKAR </option><option> Shahdadkot </option><option> Shahdara </option><option> Shahkot </option><option> SHAHPUR CITY </option><option> SHAHPUR SADDAR </option><option> SHAKAR GARH </option><option> SHAMKOT </option><option> SHANKIARI </option><option> SHARAQPUR SHARI </option><option> Sheikhupura </option><option> SHER KHANIE </option><option> SHER SHAH </option><option> SHEWA ADDA </option><option> Shikarpur </option><option> SHIMLA HILL </option><option> SHINKA </option><option> Shorkot Cantt. </option><option> Shorkot City </option><option> SHOUKAT LINES </option><option> Shujabad </option><option> Sial Sharif </option><option> Sialkot </option><option> SIBBI </option><option> SILLANWALI </option><option> SINGOLA (A.K.) </option><option> SIRGUDHAN </option><option> SITA ROAD(REHMA </option><option> SKARDU </option><option> SMAHNI (A.K) </option><option> SMALL IND ESTAT </option><option> Sobho Dero </option><option> Sohawa </option><option> SOHAWA (CITY ON </option><option> SOHAWA DEWALIAN </option><option> SROHTA (A.K.) </option><option> SUI </option><option> SUJAWAL </option><option> Sukkur </option><option> Sultan Kot </option><option> SUPPLY (A.K.) </option><option> SWABI </option><option> SYED WALA </option><option> Takht-e-Bhai </option><option> TAKYA KAWAN(A.K </option><option> Talagang </option><option> TALHAR </option><option> TALIAN (A.K.) </option><option> TALVANDI </option><option> Tamirgaraha </option><option> TAND KOI </option><option> TANDA </option><option> TANDLIANWALA </option><option> Tando Adam </option><option> Tando ala yar </option><option> TANDO BAGO </option><option> TANDO GHULAM AL </option><option> Tando Jam </option><option> TANDO JAN MOHD. </option><option> Tando Mohd.khan </option><option> TANGDEW (A.K) </option><option> TANGI GALA (A. </option><option> TANK </option><option> TAPPI </option><option> Tarbela Dam </option><option> TARIQ ABAD (A.K </option><option> TARNAB FARM(AGR </option><option> Tarnol </option><option> TATA PANI (A.K) </option><option> TATRAL </option><option> Taunsa Sharif </option><option> Taxila </option><option> TEHI </option><option> THAINGI </option><option> THALL </option><option> THANIL FATOI </option><option> THARPARKER </option><option> THARU SHAH </option><option> Thatha </option><option> THATTA (SADIQAB </option><option> THEENG MORE(ALL </option><option> THEHRI </option><option> THERI MIR WAH </option><option> THOA MAHARAM KH </option><option> THORAR (A.K.) </option><option> THOTHA RAI BAHA </option><option> THULL </option><option> TIBBA SULTAN PU </option><option> Toba Tek Sing </option><option> TOPA (A.K.) </option><option> TOPI </option><option> TRANDA MOHD. PA </option><option> TRARKHAIL (A.K) </option><option> TRUTTA (A.K) </option><option> T-TIP </option> COLONY<option> TULAMBA </option><option> Turbat </option><option> UCH SHARIF </option><option> UMAR ZAI </option><option> Umer Kot </option><option> USTA MUHAMMAD </option><option> UTHAL </option><option> VANKY TARER </option><option> VEGOWAL </option><option> VEHALIZER </option><option> Vehari </option><option> VENKTARAR </option><option> VESPA FACTORY </option><option> WADHI </option><option> WAGGON </option><option> Wah Cantt </option><option> WAHHNDO </option><option> WAISA </option><option> WANJARI </option><option> WARAH </option><option> WASU </option><option> Wazirabad </option><option> WINDER </option><option> Yazman Mandi </option><option> YOUSAF SUGAR MI </option><option> ZAFARWAL </option><option> ZAHIR PEER </option><option> Zhob </option><option> ZIABAD </option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Address</label>
+              <p class="rq" id="rq_a">*Required Field </p>
+              <div class=" -icon">
+                <input class="  " type="text" name="address" id="booking_address">
+                <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Default Origin City</label>
+              <input class=" " type="text" name="default_origin_city" value="Rawalpindi" readonly>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Weight(kg)</label>
+              <p class="rq" id="rq_w">*Required Field </p>
+              <input class=" " type="text" name="weight" placeholder="Weight in kilogram" id="booking_weight">
+            </div>
+          </div>
+          <div class="col-6">
+            <label class="label">Pickup City</label>
+            <input type="text" name="pickup_city" value="Islamabad" readonly>
+
+            <!-- <div class="rs-select2 js-select-simple select--no-search">
+              <select style="width:400px; height: 40px; " name="pickup_city">
+                <option disabled="disabled" selected="selected">Choose option</option>
+                <option> Islamabad</option>
+                <option> Lahore</option>
+                <option> Karachi </option>
+                <option> Rawalpindi</option>
+                <option> Multan </option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div> -->
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Customer Reference #</label>
+              <p class="rq" id="rq_crn">*Required Field </p>
+              <input class=" " type="text" name="customer_reference_number" id="booking_crn">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Service Type</label>
+              <input class=" " type="text" name="service_type" value="Cash On Delivery" readonly>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Flyer No.</label>
+              <!-- <p class="rq" id="rq_fn">*Required Field </p> -->
+              <input class=" " type="text" name="flyer_number" id="booking_fn">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+
+              <label class="label">Special Handling</label>
+             
+              <input class=" " type="text" name="special_handling" id="booking_sh">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+
+            <label class="label">Product</label>
+            
+
+            <p> Select from the following List </p>
+            <ul>
+
+
+              {% for product in products_with_this_user %}
+
+              <li>{{product.product_description}}<p style="color:red ; display: inline-block;"> [
+                  {{product.quantity_available}} Left in Stock ] </p>
+              </li>
+              {% endfor %}
+            </ul>
+
+            <div id="div1" style="width: 100% ;">
+              <p class="rq" id="rq_p">*Required Field </p>
+              <input style="background-color:white ; border: 0.5px solid black; width: 185px; height: 3px;" type="text"
+                id="p1" name="p1" placeholder="Enter Product Name">
+              <input style="width: 185px ;" type="number" id="q2" name="q1" placeholder="Enter Quantity">
+              <button onclick="addMoreFields()" type="button"> Add New Product </button>
+              <button onclick="removeFields()" type="button"> Remove Product </button>
+            </div>
+            <var id="vox" hidden>1</var>
+            <!-- <input onchange="addQField()" type="checkbox" id={{product.product_description}} value={{product.product_description}} onclick="showQuantity()"> -->
+
+
+
+            <!-- <option > {{product.product_description}} </option> -->
+
+            <!-- <ul>
+              <li><p> Enter Quantity for <span style="color:blue ;" > {{product.product_description}}</span>: </p>
+              </li>
+                <input style="width:70px ;" type="number" placeholder="0" name="quantity"> 
+              </ul>
+             -->
+            <br><br>
+
+
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Cash Amount</label>
+              <p class="rq" id="rq_ca">*Required Field </p>
+              <input class=" " type="text" name="cash_amount" placeholder="Rs. " id="booking_ca">
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <div hidden>
+          <input class=" " type="text" name="status" value="Booked" readonly>
+        </div>
+
+        <br><br>
+        <div class="p-t-15">
+          <button onclick=" return validate()" class="btn btn--radius-2 btn--blue" type="submit"
+            href="after_booking">Submit</button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+
+  <!-- ============== END BOOKING FORM ==============  -->
+
+
+
+
+  <!-- ================== Less Detailed Table (ON Date Wise Search) ==================== -->
+
+  <section id="less_detailed_table" class="">
+    <div class="table-wrap hero-container  ">
+      <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
+      <br>
+      <table id="LessDetailedTable" class="table myTable">
+
+        <!-- <input type="text" name="username" value={{user.username}} hidden> -->
+
+
+        <thead class="thead-primary">
+          <tr class="header" style="background-color:black ;">
+            <th>CN Number</th>
+
+            <th>Product Detail</th>
+            <th>Cash Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for book in all_bookings%}
+          <tr>
+            <td id="td"><strong> {{book.cn_number}} </strong> </td>
+
+            <td> {{book.product_detail }} </td>
+            <td> {{book.cash_amount}} </td>
+            <form method="POST" action="getLog">
+              {% csrf_token %}
+              <input type="text" name="cn_number" value={{book.cn_number}} hidden>
+
+              <td> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
+                  style=" color:blue ;background-color:aliceblue ; border:none"> {{book.status}} </button> </td>
+
+            </form>
+
+
+
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+    </div>
+    <!-- {% if book.status != "Delivered"  %}
+{% if book.status != "Refused by Customer"  %}
+
+<form method="POST" action="cancelRecord">
+  {% csrf_token %}
+  <input class=" " type="text" name="cn_number" value={{all_bookings.cn_number}} readonly hidden>
+<button onclick="return confirm('Are you sure you want to Cancel the Booking ?');" class="btn btn-danger" > <a style="color:white ;">Cancel Booking</a>
+  
+</form>
+{% endif %}
+{% endif %} -->
+
+  </section>
+
+
+  <!-- =============== Less Detailed Table End (ON Date Wise Search) =================== -->
+
+
+
+
+
+  <!-- ========== Full Detailed Booking Table  =========== -->
+
+
+  <section id="full_detailed_table" class="">
+    <div class="table-wrap hero-container  ">
+      <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
+      <br>
+      <table id="FullDetailedTable" class="table myTable">
+
+        <!-- <input type="text" name="username" value={{user.username}} hidden>
+        <label> <strong> Consignment #: </strong> </label> <br>
+
+        <input id="myInput" onkeyup="searchFunction()"
+          style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+          type="text" name="cn_number" placeholder="Enter CN Number">
+
+        <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+       
+        </td> -->
+
+        <thead class="thead-primary">
+          <tr class="header" style="background-color:black ;">
+            <th>CN Number</th>
+            <th>Name</th>
+            <th>Mobile Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Destination Address</th>
+            <th>Product Detail</th>
+            <th>Weight</th>
+            <th>Pieces</th>
+            <th>Special Handling</th>
+            <th>Service Type</th>
+            <th>Pickup City</th>
+            <th>Cash Amount</th>
+            <th>Status</th>
+            <th>Date and Time</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+          {% for book in bookings_log%}
+          <tr>
+            <td><strong> {{book.cn_number}} </strong> </td>
+            <td id="td2"> {{book.name}}</td>
+            <td> {{book.mobile_number}} </td>
+            <td> {{book.email}} </td>
+            <td> {{book.address}}</td>
+            <td> {{book.destination_city}}</td>
+            <td> {{book.product_detail }} </td>
+            <td> {{book.weight}} </td>
+            <td> {{book.pieces}} </td>
+            <td> {{book.special_handling}} </td>
+            <td> {{book.service_type}} </td>
+            <td> {{book.pickup_city}} </td>
+            <td> {{book.cash_amount}} </td>
+
+
+            <!-- <td> <form method="POST" action="delete_booking">
+            {% csrf_token%}
+            <input class="btn btn-danger" type="submit" name="delete_record" value={{book.cn_number}}  readonly >
+            </form> 
+        </td> -->
+            <td> {{book.status}} </td>
+
+            <td> {{book.dateTime}} </td>
+
+
+
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+    </div>
+    <!-- {% if book.status != "Delivered"  %}
+  {% if book.status != "Refused by Customer"  %}
+
+  <form method="POST" action="cancelRecord">
+    {% csrf_token %}
+    <input class=" " type="text" name="cn_number" value={{all_bookings.cn_number}} readonly hidden>
+  <button onclick="return confirm('Are you sure you want to Cancel the Booking ?');" class="btn btn-danger" > <a style="color:white ;">Cancel Booking</a>
+    
+ 
+  </form>
+  {% endif %}
+  {% endif %} -->
+
+  </section>
+
+  <!-- ======================= Full Detailed Booking Table End===================== -->
+
+
+
+  <!-- ======== Less Detailed Table (On CN Number wise Search)======= -->
+
+
+  <section id="less_detailed_table_cn_search" class="">
+    <div class="table-wrap hero-container  ">
+      <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
+      <br>
+      <table id="LessDetailedTableCnSearch" class="table">
+
+
+        <thead class="thead-primary">
+          <tr class="header" style="background-color:black ;">
+            <th>CN Number</th>
+            <th>Product Detail</th>
+            <th>Cash Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="tableData"><strong> {{rec.cn_number}} </strong> </td>
+
+            <td> {{rec.product_detail }} </td>
+            <td> {{rec.cash_amount}} </td>
+            <form method="POST" action="getLog">
+              {% csrf_token %}
+
+              <input type="text" name="cn_number" value={{rec.cn_number}} hidden>
+
+              <td> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
+                  style=" color:blue ;background-color:aliceblue ; border:none"> {{rec.status}} </button> </td>
+
+            </form>
+
+
+
+          </tr>
+
+
+        </tbody>
+
+
+      </table>
+
+    </div>
+
+  </section>
+
+  <!-- ======== Less Detailed Table End (ON Cn Number wise Search)====== -->
+
+
+
+  <!-- =========== Products Section ============== -->
+  <section id="product_section" class="">
+    <table id="productTable" style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
+      <tr>
+        <th> Product Image</th>
+        <th> Product Name</th>
+        <th>Product Description </th>
+        <th>Product SKU </th>
+        <th>Quantity Given </th>
+        <th>Quantity In-Process </th>
+        <th>Quantity Sold </th>
+        <th>Quantity Available </th>
+      </tr>
+      {% for prod in all_Products %}
+      <tr>
+        <td> <img src='/media/{{prod.product_image}}' width="225" height="225" </td>
+        <td> {{prod.product_name}} </td>
+        <td> {{prod.product_description}} </td>
+        <td> {{prod.sku}} </td>
+        <td> {{prod.quantity_given}} </td>
+        <td> {{prod.quantity_in_process}} </td>
+        <td> {{prod.quantity_sold}} </td>
+        <td> {{prod.quantity_available}} </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+
+  <!-- =========== Products Section END ============== -->
+
+
+
+</main>
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="container">
+        <div class="copyright">
+          &copy; Copyright <strong><span>FulfillKaro.pk</span></strong>
+        </div>
+        <div class="credits">
+          <!-- All the links in the footer should remain intact. -->
+          <!-- You can delete the links only if you purchased the pro version. -->
+          <!-- Licensing information: https://bootstrapmade.com/license/ -->
+          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+          Designed by <a href="https://www.fulfillkaro.pk/">FulfillKaro</a>
+        </div>
+      </div>
+    </footer><!-- End  Footer -->
+
+
+
+
+  <!-- Vendor JS Files -->
+  <script src=' {%static "assets/vendor/aos/aos.js" %}'></script>
+  <script src=' {%static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/glightbox/js/glightbox.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/isotope-layout/isotope.pkgd.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/php-email-form/validate.js" %}'></script>
+  <script src=' {%static "assets/vendor/purecounter/purecounter.js" %}'></script>
+  <script src=' {%static "assets/vendor/swiper/swiper-bundle.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/typed.js/typed.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/waypoints/noframework.waypoints.js" %}'></script>
+
+  <!-- Template Main JS File -->
+  <script src=' {%static "assets/js/main.js" %}'></script>
+
+
+
+</body>

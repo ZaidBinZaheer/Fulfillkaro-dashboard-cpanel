@@ -1,0 +1,1099 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link rel="stylesheet" href="{%static 'css/style.css' %}">
+  <title> FulfillKaro.pk - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="{%static 'css/style.css' %}">
+  <!-- Favicons -->
+  <link href='{%static  "assets/img/favicon.png" %}' rel="icon">
+  <link href='{%static "assets/img/apple-touch-icon.png" %}' rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href='{%static "assets/vendor/aos/aos.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/bootstrap-icons/bootstrap-icons.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/boxicons/css/boxicons.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/glightbox/css/glightbox.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/swiper/swiper-bundle.min.css" %}' rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href='{%static "assets/css/style.css" %}' rel="stylesheet" %}'>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.1.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+
+  <style>
+    .team-member-info {
+      display: none;
+    }
+
+    #hero {
+      width: 100%;
+      height: 100vh;
+      background: url(static/assets/img/courier5.jpg) top center;
+      background-size: cover;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      background-color: cornflowerblue;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      /* position: fixed; */
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+
+    .booking-table-popup {
+      overflow: scroll;
+      width: 700px;
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 20px;
+      right: 20px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    .booking-form-popup {
+      overflow: scroll;
+      width: 700px;
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 20px;
+      right: 20px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: auto;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    .booking-form-container {
+      max-width: 2000px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* Full-width input fields */
+    .booking-form-container input[type=text],
+    .booking-form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* When the inputs get focus, do something */
+    .booking-form-container input[type=text]:focus,
+    .booking-form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Set a style for the submit/login button */
+    .booking-form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    .form-container .next-btn {
+      background-color: cornflowerblue;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    /* Add some hover effects to buttons */
+    .booking-form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    .alert {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 20px;
+      z-index: 1000;
+      background-color: #f44336;
+      color: white;
+      opacity: 1;
+      transition: opacity 0.6s;
+      margin-bottom: 15px;
+    }
+
+    .alert.success {
+      background-color: #04AA6D;
+    }
+
+    .alert.info {
+      background-color: #2196F3;
+    }
+
+    .alert.warning {
+      background-color: #ff9800;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+
+
+    .right-side-content {
+      margin: 70px;
+      width: 70%;
+      float: right;
+
+
+
+    }
+  </style>
+  <script>
+
+    function showOrHideTable() {
+      var x = document.getElementById("th").textContent;
+      if (x == "") {
+        document.getElementById("all-booking").style.display = "none";
+      }
+      else {
+        document.getElementById("all-booking").style.display = "block";
+      }
+
+    }
+    function showStats() {
+      document.getElementById("statistics").style.display = "block";
+    }
+    function hideStats() {
+      document.getElementById("statistics").style.display = "none";
+    }
+    function showTable() {
+      document.getElementById("all-booking").style.display = "block";
+    }
+    function hideTable() {
+      document.getElementById("all-booking").style.display = "none";
+    }
+
+    function showOrHideStats() {
+      var x = document.getElementById("stat_data").textContent;
+      if (x == "") {
+        document.getElementById("statistics").style.display = "none";
+      }
+      else {
+        document.getElementById("statistics").style.display = "block";
+      }
+    }
+    function closeAlert() {
+      document.getElementById("message-box").style.display = "none"
+    }
+
+    function hideBookingForm() {
+      document.getElementById("BookingForm").style.display = "none";
+    }
+
+    function openBookingForm() {
+      document.getElementById("BookingForm").style.display = "block";
+    }
+    function openOrHideBookingForm() {
+      var x = document.getElementById("cn").value;
+      if (x == 'readonly') {
+        document.getElementById("BookingForm").style.display = "none";
+      }
+      else {
+        document.getElementById("BookingForm").style.display = "block";
+      }
+    }
+    function hideDetailedTable2() {
+      document.getElementById("DetailedTable2").style.display = "none";
+    }
+   
+
+    function hideDetailedTable() {
+      document.getElementById("DetailedTable").style.display = "none";
+    }
+    function openDetailedTable() {
+      document.getElementById("all-booking").style.display = "none";
+      document.getElementById("DetailedTable").style.display = "block";
+    }
+
+    function surityAlert() {
+      let confirmAction = confirm("Are you sure you want to cancel this booking?");
+      if (confirmAction) {
+        alert("Action successfully executed");
+      } else {
+        alert("Action canceled");
+      }
+    }
+    function showOrHideDetailedTable() {
+      var x = document.getElementById("td").textContent;
+
+      if (x == "") {
+        document.getElementById("DetailedTable").style.display = "none";
+      }
+      else {
+        document.getElementById("DetailedTable").style.display = "block";
+      }
+    }
+
+  </script>
+
+</head>
+
+<body class="right-side-content"
+  onload="showOrHideTable(), showOrHideStats(), openOrHideBookingForm(), showOrHideDetailedTable(), hideDetailedTable2()">
+
+  {% for message in messages %}
+  <div class="alert" id="message-box">
+    <span onclick="closeAlert()" class="closebtn">&times;</span>
+    <strong> {{message}} </strong>
+  </div>
+  {% endfor %}
+
+  <h1 style="text-align:center ;"><strong>User Dashboard </strong> </h1>
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src=' {%static "assets/img/courier2.jpg" %}' alt="" class="img-fluid rounded-circle">
+
+        <h1 class="text-light"> Welcome, {{user.username}} !</h1>
+
+        <div class="social-links mt-3 text-center">
+          <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul style="height: 335px ;">
+          <li><a href="goto_home" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Home</span></a></li>
+          <!-- <li><a href="#about" class="nav-link scrollto"><i class="bx bx-server"></i> <span>About</span></a></li> -->
+
+
+          <form method="POST" action="getStatistics">
+            {% csrf_token%}
+            <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden>
+            <button style="background-color:#040b14;color:darkgrey ; border: none;" type="submit">
+              <li type="submit"><a class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                  <span class="team-member">View Statistics</span></a></li>
+            </button>
+          </form>
+
+          <form method="POST" action="get_last">
+            <input type="text" name="username" value={{user.username}} hidden>
+            {% csrf_token %}
+            <button style="background-color:#040b14;color:darkgrey ;border: none; " type="submit">
+              <li><a onclick="openBookingForm()" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>
+                    Book Parcel</span></a></li>
+            </button>
+          </form>
+
+
+
+
+
+
+          <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden>
+
+          <li class="team-member" onclick="hideStats(), showTable()"><a class="nav-link scrollto "><i
+                class="bx bx-book-content"></i>
+              <span style="color:darkgrey ;" class="team-member">Track Your Booking </span></a></li>
+
+
+          <!-- <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>View Booking</span></a></li> -->
+
+          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+
+          <button style="background-color:cornflowerblue;">
+            <li><a href="logout" class=""> <span style=" color:black;  ">Logout </span></a></li>
+          </button>
+
+
+          <!-- <button class="open-button " onclick="openForm()">Login or Sign up</button> -->
+
+        </ul>
+      </nav>function showDetailedTable2() {
+        document.getElementById("DetailedTable2").style.display = "block";
+      }
+    </div>
+  </header>
+
+  <main id="main">
+
+
+
+  </main>
+  <!-- End #main -->
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>FulfillKaro.pk</span></strong>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://www.linkedin.com/in/zaid-bin-zaheer-110a4a1b7/">Zaid Bin Zaheer</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+
+
+
+
+  <!-- =========== Statistics =============== -->
+  <!-- ICONS FROM https://icons.getbootstrap.com/ -->
+
+
+  <section id="statistics" class=" facts team-member-info">
+    <div class="row no-gutters">
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
+        <div class="count-box">
+          <i class="bi bi-bar-chart-line-fill"></i>
+          <span id="stat_data">{{total_bookings}}</span>
+
+          <p><strong>Total Orders</strong></p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
+        <div class="count-box">
+          <i class="bi bi-check-square-fill"></i>
+          <span>{{total_delivered_bookings}} </span>
+          <p><strong>Total Delivered Parcels </strong> </p>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
+        <div class="count-box">
+          <i class="bi bi-arrow-clockwise"></i>
+          <span> {{total_returned_bookings}} </span>
+          <p><strong>Total Returned Bookings </strong> </p>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
+        <div class="count-box">
+          <i class="bi bi-credit-card-2-front-fill"></i>
+          <span> Rs. 200k </span>
+          <p><strong>Payment Last Month</strong> </p>
+        </div>
+      </div>
+
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
+        <div class="count-box">
+          <i class="bi bi-truck"></i>
+          <span>{{delivery_rate}} % </span>
+          <p><strong>Delivered Rate</strong> </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
+        <div class="count-box">
+          <i class="bi bi-bar-chart-line"></i>
+          <span>{{return_rate}} % </span>
+          <p><strong>Return Rate</strong></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- =========== Statistics END =============== -->
+
+
+
+  <!-- =============== Search Record Form ================= -->
+
+  <form method="POST" action="searchRecord">
+    {% csrf_token %}
+    <input type="text" name="username" value={{user.username}} hidden>
+    <label> <strong> Consignment #: </strong> </label> <br>
+    <input
+      style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+      type="text" name="cn_number" placeholder="Enter CN Number">
+
+    <button onclick="" style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+    <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+  </form>
+
+  <!-- Data From -->
+  <form method="POST" action="searchDateWise">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-4">
+
+        <input type="text" name="username" value={{user.username}} hidden>
+        <label> <strong> Date From: </strong> </label> <br>
+        <input
+          style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+          type="date" placeholder="dd-mm-yyyy" name="from_date">
+
+        <!-- <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br> -->
+        <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+
+        <!-- Date From End -->
+
+      </div>
+      <div class="col-4">
+        <!------------ Date To ------------>
+
+        <label> <strong> Date To: </strong> </label> <br>
+        <input
+          style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+          type="date" placeholder="dd-mm-yyyy" name="to_date">
+        <br><br>
+
+
+
+        <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+      </div>
+      <div class="col-4"><br>
+        <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+      </div>
+    </div>
+  </form>
+
+  <!------------- Date To End ------------->
+
+  <!-- =========== Search Record End =============== -->
+
+
+
+
+  <!-- =========== Booking Table =============== -->
+
+  <section id="all-booking" class="team-member-info">
+    <div style="width:500px ;" class=" hero-container ">
+      <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
+      <br>
+      <table id="Table" class="table">
+
+    </div>
+
+    <thead class="thead-primary">
+      <tr style="background-color:black ;">
+        <th>CN Number</th>
+        <th>Name</th>
+        <th>Product Detail</th>
+         <th>Cash Amount</th>
+        <th> Status </th>
+        
+        <!-- <th>Mobile Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Destination Address</th> -->
+        
+        <!-- <th>Weight</th>
+            <th>Pieces</th>
+            <th>Special Handling</th>
+            <th>Service Type</th>
+            <th>Pickup City</th> -->
+       
+
+        <!-- <th></th> -->
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <th id="th" scope="row" class="scope">{{all_bookings.cn_number}}</th>
+         <td id="td"> {{all_bookings.name}}</td>
+         <td> {{all_bookings.product_detail }} </td>
+          <td> {{all_bookings.cash_amount}} </td>
+        
+          <td >{{all_bookings.status}}</td>
+
+
+       
+        <!-- <td> {{all_bookings.mobile_number}} </td>
+            <td> {{all_bookings.email}} </td>
+            <td> {{all_bookings.address}}</td>
+            <td> {{all_bookings.destination_city}}</td> -->
+        
+        <!-- <td> {{all_bookings.weight}} </td>
+            <td> {{all_bookings.pieces}} </td>
+            <td> {{all_bookings.special_handling}} </td>
+            <td> {{all_bookings.service_type}} </td>
+            <td> {{all_bookings.pickup_city}} </td> -->
+       
+
+
+        <!-- <td>
+                <input class=" " type="text" name="cn_number" value={{book.cn_number}} readonly hidden>
+
+                <button class="btn btn-primary" type="submit"> SAVE </button> <br><br>
+                <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly >
+            </td> -->
+      
+
+      </tr>
+
+    </tbody>
+    </table>
+
+
+
+    </div>
+  </section>
+
+
+
+
+  <!-- =========== Booking Form =============== -->
+
+  <br><br><br><br><br>
+  <section id="BookingForm">
+    <div class="" id="bookingForm">
+
+      <form method="POST" action="after_booking" class="booking-form-container">
+        {% csrf_token %}
+        <h1 style="font-family:fantasy; text-align: center;">Booking Form</h1><br><br>
+        <div class="row">
+          <div class="col-6">
+            <div class=" ">
+              <label class="label">CN Number</label>
+              <input id="cn" class=" " type="text" name="cn_number" value={{last_cn_num}} readonly>
+            </div>
+          </div>
+          <div class=" col-6">
+            <div>
+              <label class="label">Username</label>
+              <input type="text" name="username" value="{{user.username}}" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Name</label>
+              <input type="text" name="name" placeholder="Consignee Name">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Mobile Number</label>
+              <input class=" " type="text" name="mobile_number" placeholder="03XX-XXXXXXX">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Email</label>
+              <input class=" " type="text" name="email" placeholder="abc123@xyz.com">
+            </div>
+          </div>
+          <div class="     col-6">
+            <label class="label">Destination City</label>
+            <div class="rs-select2 js-select-simple select--no-search">
+              <select style="width:400px; height: 40px; " name="destination_city">
+                <option disabled="disabled" selected="selected">Choose option</option>
+                <option>Islamabad</option>
+                <option>Lahore</option>
+                <option>Karachi</option>
+                <option>Multan</option>
+                <option>Rawalpindi</option>
+              </select>
+              <div class="select-dropdown"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Address</label>
+              <div class=" -icon">
+                <input class="  " type="text" name="address">
+                <!-- <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Default Origin City</label>
+              <input class=" " type="text" name="default_origin_city" value="Rawalpindi" readonly>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Weight(kg)</label>
+              <input class=" " type="text" name="weight" placeholder="Weight in kilogram">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Pieces</label>
+              <input class=" " type="text" name="pieces" placeholder="Number of Pieces">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Customer Reference #</label>
+              <input class=" " type="text" name="customer_reference_number">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Service Type</label>
+              <input class=" " type="text" name="service_type" value="Cash On Delivery" readonly>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Flyer No.</label>
+              <input class=" " type="text" name="flyer_number">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Special Handling</label>
+              <input class=" " type="text" name="special_handling">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Product Detail</label>
+              <input class=" " type="text" name="product_detail">
+            </div>
+          </div>
+          <div class="   col-6">
+            <div class=" ">
+              <label class="label">Cash Amount</label>
+              <input class=" " type="text" name="cash_amount" placeholder="Rs. ">
+            </div>
+          </div>
+
+        </div>
+
+        <div class=" ">
+          <label class="label">Pickup City</label>
+          <div class="rs-select2 js-select-simple select--no-search">
+            <select style="width:400px; height: 40px; " name="pickup_city">
+              <option disabled="disabled" selected="selected">Choose option</option>
+              <option> Islamabad</option>
+              <option> Lahore</option>
+              <option> Karachi </option>
+              <option> Rawalpindi</option>
+              <option> Multan </option>
+            </select>
+            <div class="select-dropdown"></div>
+          </div>
+        </div>
+
+        <div hidden>
+          <input class=" " type="text" name="status" value="Pending" readonly>
+        </div>
+
+        <br><br>
+        <div class="p-t-15">
+          <button class="btn btn--radius-2 btn--blue" type="submit" href="after_booking">Submit</button>
+        </div>
+        <button type="button" style="background-color:red;" class="btn cancel"
+          onclick="closeBookingForm()">Close</button>
+      </form>
+    </div>
+  </section>
+  <!-- ==================== END BOOKING FORM =====================  -->
+
+
+
+  <!-- =========== Booking Table END =============== -->
+
+
+  <section hidden>
+    <form>
+      <label> Consignment #: </label> <br>
+      <input type="text" name="cn_number"> <br>
+
+      <label> Destination City #: </label> <br>
+      <input type="text" name="destination_city"> <br>
+
+      <label> Customer Reference #: </label> <br>
+      <input type="text" name="customer_reference_number"> <br>
+
+      <label> Consignment From: </label> <br>
+      <input type="text" name="cons_from"> <br>
+
+      <label> Consignment To: </label> <br>
+      <input type="text" name="cons_to"> <br>
+    </form>
+  </section>
+
+
+
+
+  <!-- ================== Detailed Table ==================== -->
+
+  <section id="DetailedTable" class="team-member-info">
+    <div class="table-wrap hero-container  ">
+      <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
+      <br>
+      <table id="Table" class="table myTable">
+
+        <!-- <input type="text" name="username" value={{user.username}} hidden>
+        <label> <strong> Consignment #: </strong> </label> <br>
+
+        <input id="myInput" onkeyup="searchFunction()"
+          style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+          type="text" name="cn_number" placeholder="Enter CN Number">
+
+        <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+       
+        </td> -->
+
+        <thead class="thead-primary">
+          <tr class="header" style="background-color:black ;">
+            <th>CN Number</th>
+            <th>Name</th>
+            <!-- <th>Mobile Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Destination Address</th> -->
+            <th>Product Detail</th>
+            <!-- <th>Weight</th>
+            <th>Pieces</th>
+            <th>Special Handling</th>
+            <th>Service Type</th>
+            <th>Pickup City</th>-->
+            <th>Cash Amount</th> 
+            <th>Status</th>
+            <!-- <th>Date and Time</th> -->
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+          {% for book in all_bookings%}
+          <tr>
+            <td><strong> {{book.cn_number}} </strong> </td>
+            <td id="td"> {{book.name}}</td>
+            <!-- <td> {{book.mobile_number}} </td>
+            <td> {{book.email}} </td>
+            <td> {{book.address}}</td>
+            <td> {{book.destination_city}}</td> -->
+            <td> {{book.product_detail }} </td>
+            <!-- <td> {{book.weight}} </td>
+            <td> {{book.pieces}} </td>
+            <td> {{book.special_handling}} </td>
+            <td> {{book.service_type}} </td>
+            <td> {{book.pickup_city}} </td> -->
+            <td> {{book.cash_amount}} </td>
+
+
+            <!-- <td> <form method="POST" action="delete_booking">
+            {% csrf_token%}
+            <input class="btn btn-danger" type="submit" name="delete_record" value={{book.cn_number}}  readonly >
+            </form> 
+        </td> -->
+        <form method="POST" action="getLog">
+          {% csrf_token %}
+          <input type="text" name="cn_number" value={{book.cn_number}} hidden>
+        
+            <td> <button type="submit" onclick="showDetailedTable2()"  style=" color:blue ;background-color:aliceblue ; border:none" > {{book.status}} </button> </td>
+
+          </form>
+            <!-- <td> {{book.dateTime}} </td> -->
+
+
+
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+    </div>
+    <!-- {% if book.status != "Delivered"  %}
+  {% if book.status != "Refused by Customer"  %}
+
+  <form method="POST" action="cancelRecord">
+    {% csrf_token %}
+    <input class=" " type="text" name="cn_number" value={{all_bookings.cn_number}} readonly hidden>
+  <button onclick="return confirm('Are you sure you want to Cancel the Booking ?');" class="btn btn-danger" > <a style="color:white ;">Cancel Booking</a>
+    
+ 
+  </form>
+  {% endif %}
+  {% endif %} -->
+
+  </section>
+
+
+  <!-- =============== Detailed Table End =================== -->
+
+  <!-- =============== Detailed Table 2 =================== -->
+
+
+  <section id="DetailedTable2" class="team-member-info">
+    <div class="table-wrap hero-container  ">
+      <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
+      <br>
+      <table id="Table2" class="table myTable">
+
+        <!-- <input type="text" name="username" value={{user.username}} hidden>
+        <label> <strong> Consignment #: </strong> </label> <br>
+
+        <input id="myInput" onkeyup="searchFunction()"
+          style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+          type="text" name="cn_number" placeholder="Enter CN Number">
+
+        <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+       
+        </td> -->
+
+        <thead class="thead-primary">
+          <tr class="header" style="background-color:black ;">
+            <th>CN Number</th>
+            <th>Name</th>
+            <th>Mobile Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Destination Address</th>
+            <th>Product Detail</th>
+            <th>Weight</th>
+            <th>Pieces</th>
+            <th>Special Handling</th>
+            <th>Service Type</th>
+            <th>Pickup City</th>
+            <th>Cash Amount</th> 
+            <th>Status</th>
+            <th>Date and Time</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+
+          {% for book in all_bookings%}
+          <tr>
+            <td><strong> {{book.cn_number}} </strong> </td>
+            <td id="td2"> {{book.name}}</td>
+            <td> {{book.mobile_number}} </td>
+            <td> {{book.email}} </td>
+            <td> {{book.address}}</td>
+            <td> {{book.destination_city}}</td>
+            <td> {{book.product_detail }} </td>
+            <td> {{book.weight}} </td>
+            <td> {{book.pieces}} </td>
+            <td> {{book.special_handling}} </td>
+            <td> {{book.service_type}} </td>
+            <td> {{book.pickup_city}} </td>
+            <td> {{book.cash_amount}} </td>
+
+
+            <!-- <td> <form method="POST" action="delete_booking">
+            {% csrf_token%}
+            <input class="btn btn-danger" type="submit" name="delete_record" value={{book.cn_number}}  readonly >
+            </form> 
+        </td> -->
+            <td> {{book.status}} </td>
+
+            <td> {{book.dateTime}} </td>
+
+
+
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+    </div>
+    <!-- {% if book.status != "Delivered"  %}
+  {% if book.status != "Refused by Customer"  %}
+
+  <form method="POST" action="cancelRecord">
+    {% csrf_token %}
+    <input class=" " type="text" name="cn_number" value={{all_bookings.cn_number}} readonly hidden>
+  <button onclick="return confirm('Are you sure you want to Cancel the Booking ?');" class="btn btn-danger" > <a style="color:white ;">Cancel Booking</a>
+    
+ 
+  </form>
+  {% endif %}
+  {% endif %} -->
+
+  </section>
+
+  <!-- ======================= Detailed Table 2 End===================== -->
+
+
+
+
+
+
+  <!-- Vendor JS Files -->
+  <script src=' {%static "assets/vendor/aos/aos.js" %}'></script>
+  <script src=' {%static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/glightbox/js/glightbox.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/isotope-layout/isotope.pkgd.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/php-email-form/validate.js" %}'></script>
+  <script src=' {%static "assets/vendor/purecounter/purecounter.js" %}'></script>
+  <script src=' {%static "assets/vendor/swiper/swiper-bundle.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/typed.js/typed.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/waypoints/noframework.waypoints.js" %}'></script>
+
+  <!-- Template Main JS File -->
+  <script src=' {%static "assets/js/main.js" %}'></script>
+
+  <script>
+     function showDetailedTable2() {
+      document.getElementById("DetailedTable2").style.display = "block";
+    }
+    const teamMember = document.getElementsByClassName("team-member");
+    const teamMemberInfo = document.getElementsByClassName("team-member-info");
+
+  </script>

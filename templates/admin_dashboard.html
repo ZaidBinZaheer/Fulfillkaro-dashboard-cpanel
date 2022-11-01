@@ -1,0 +1,998 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <meta content="width=device-width, initial-scale=1.0" name="viewport"> -->
+  <link rel="stylesheet" href="{%static 'css/style.css' %}">
+  <title> FulfillKaro.pk - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- <link rel="stylesheet" href="{%static 'css/style.css' %}"> -->
+  <!-- Favicons -->
+  <link href='{%static  "assets/img/favicon.png" %}' rel="icon">
+  <link href='{%static "assets/img/apple-touch-icon.png" %}' rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href='{%static "assets/vendor/aos/aos.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/bootstrap/css/bootstrap.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/bootstrap-icons/bootstrap-icons.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/boxicons/css/boxicons.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/glightbox/css/glightbox.min.css" %}' rel="stylesheet">
+  <link href='{%static "assets/vendor/swiper/swiper-bundle.min.css" %}' rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href='{%static "assets/css/style.css" %}' rel="stylesheet" %}'>
+
+  <!-- =======================================================
+  * Template Name: iPortfolio - v3.1.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+
+  <style>
+    @media (max-width: 1199px) {
+      #header {
+        left: 0px;
+      }
+
+      #main {
+        margin-left: 300px;
+      }
+    }
+
+
+    .team-member-info {
+      display: none;
+    }
+
+    #hero {
+      width: 100%;
+      height: 100vh;
+      background: url(static/assets/img/courier5.jpg) top center;
+      background-size: cover;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+    .open-button {
+      background-color: cornflowerblue;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      /* position: fixed; */
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+
+    .booking-table-popup {
+      overflow: scroll;
+      width: 700px;
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 20px;
+      right: 20px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    .booking-form-popup {
+      overflow: scroll;
+      width: 700px;
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: 20px;
+      right: 20px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* The popup form - hidden by default */
+    .form-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      bottom: auto;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+
+    /* Add styles to the form container */
+    .form-container {
+      max-width: 300px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    .stock-form-container {
+      max-width: 2000px;
+      padding: 10px;
+      background-color: white;
+    }
+
+    /* Full-width input fields */
+    .form-container input[type=text],
+    .form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* Full-width input fields */
+    .stock-form-container input[type=text],
+    .stock-form-container input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    /* When the inputs get focus, do something */
+    .form-container input[type=text]:focus,
+    .form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* When the inputs get focus, do something */
+    .stock-form-container input[type=text]:focus,
+    .stock-form-container input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Set a style for the submit/login button */
+    .form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Set a style for the submit/login button */
+    .stock-form-container .btn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    /* Add a red background color to the cancel button */
+    .form-container .cancel {
+      background-color: red;
+    }
+
+    .form-container .next-btn {
+      background-color: cornflowerblue;
+    }
+
+    /* Add some hover effects to buttons */
+    .form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    /* Add some hover effects to buttons */
+    .stock-form-container .btn:hover,
+    .open-button:hover {
+      opacity: 1;
+    }
+
+    .alert {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 20px;
+      z-index: 1000;
+      background-color: #f44336;
+      color: white;
+      opacity: 1;
+      transition: opacity 0.6s;
+      margin-bottom: 15px;
+    }
+
+    .alert.success {
+      background-color: #04AA6D;
+    }
+
+    .alert.info {
+      background-color: #2196F3;
+    }
+
+    .alert.warning {
+      background-color: #ff9800;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+
+
+    .right-side-content {
+      margin: 70px;
+      width: 70%;
+      float: right;
+    }
+
+    .rq {
+      color:
+        #FF0000;
+      font-size: 10pt;
+    }
+  </style>
+  <script>
+    function showOrHideTable() {
+      if ($('#Table td').length == 0) {
+        document.getElementById("all-booking").style.display = "none";
+      }
+      else {
+        document.getElementById("all-booking").style.display = "block";
+      }
+
+    }
+    function showStats() {
+      document.getElementById("statistics").style.display = "block";
+    }
+    function hideStats() {
+      document.getElementById("statistics").style.display = "none";
+    }
+    function showTable() {
+      document.getElementById("all-booking").style.display = "block";
+    }
+    function hideTable() {
+      document.getElementById("all-booking").style.display = "none";
+    }
+
+    function showOrHideStats() {
+      var x = document.getElementById("stat_data").textContent;
+      if (x == "") {
+        document.getElementById("statistics").style.display = "none";
+      }
+      else {
+        document.getElementById("statistics").style.display = "block";
+      }
+    }
+    function showOrHideStockForm() {
+      var x = document.getElementById("vu").value;
+      if (x == "") {
+        document.getElementById("stock_form_section").style.display = "none";
+      }
+      else {
+        document.getElementById("stock_form_section").style.display = "block";
+      }
+    }
+    function showStockForm() {
+      document.getElementById("stock_form_section").style.display = "block";
+    }
+    function closeAlert() {
+      document.getElementById("message-box").style.display = "none";
+
+    }
+    function showOrHideProductSection() {
+      if ($('#productTable td').length == 0) {
+        document.getElementById("product_section").style.display = "none";
+      }
+      else {
+        document.getElementById("product_section").style.display = "block";
+      }
+
+    }
+    function hide_product_section() {
+      document.getElementById("product_section").style.display = "none";
+    }
+
+    function show_product_section() {
+      document.getElementById("product_section").style.display = "block";
+    }
+    function hide_stock_form_section() {
+      document.getElementById("stock_form_section").style.display = "none";
+    }
+
+    function show_customer_section() {
+      document.getElementById("all_customers").style.display = "block";
+    }
+    function hide_customer_section() {
+      document.getElementById("all_customers").style.display = "none";
+    }
+    function showOrHideCustomerSection() {
+      if ($('#customerTable td').length == 0) {
+        document.getElementById("all_customers").style.display = "none";
+      }
+      else {
+        document.getElementById("all_customers").style.display = "block";
+      }
+
+    }
+
+
+
+    function validate() {
+
+      var vu = document.getElementById('vu');
+      // var vn = document.getElementById('vn');
+      var pn = document.getElementById('pn');
+      var pd = document.getElementById('pd');
+      var sku = document.getElementById('sku');
+      var qg = document.getElementById('qg');
+      var pi = document.getElementById('pi');
+
+
+      var text = "Make sure";
+      var valid = true;
+      if (vu.value == "") {
+        document.getElementById("rq_vun").style.display = "block";
+        text += " Vendor's Username  ";
+        valid = false;
+      }
+      // if (vn.value == "") {
+      //   document.getElementById("rq_vn").style.display = "block";
+      //   text += " the Vendor's name  ";
+      //   valid = false;
+      // }
+
+      if (pn.value == "") {
+        document.getElementById("rq_pn").style.display = "block";
+        text += (!valid ? '& ' : '') + " the Product name  "
+        valid = false;
+
+      }
+      if (pd.value == "") {
+        document.getElementById("rq_pd").style.display = "block";
+        text += (!valid ? '& ' : '') + " the  Product description ";
+        valid = false;
+
+      }
+      if (sku.value == "") {
+        document.getElementById("rq_sku").style.display = "block";
+        text += (!valid ? '& ' : '') + " the SKU ";
+        valid = false;
+      }
+      if (qg.value == "") {
+        document.getElementById("rq_qg").style.display = "block";
+        text += (!valid ? '& ' : '') + " the Quantity given ";
+        valid = false;
+      }
+      if (pi.value == "") {
+        document.getElementById("rq_pi").style.display = "block";
+        text += (!valid ? '& ' : '') + " the Product Image ";
+        valid = false;
+      }
+
+
+
+      if (!valid) {
+        text += " is Filled";
+        alert(text);
+        return false;
+      }
+      return true;
+    }
+    function hideReq() {
+      document.getElementById("rq_vun").style.display = "none";
+      // document.getElementById("rq_vn").style.display="none";
+      document.getElementById("rq_pn").style.display = "none";
+      document.getElementById("rq_pd").style.display = "none";
+      document.getElementById("rq_sku").style.display = "none";
+      document.getElementById("rq_qg").style.display = "none";
+      document.getElementById("rq_pi").style.display = "none";
+
+    }
+
+    function showOrHideMsg() {
+      if (document.getElementById("msg") != null) {
+        alert(document.getElementById("msg").textContent)
+      }
+    }
+
+  </script>
+
+</head>
+
+<body class=""
+  onload="hideReq(), showOrHideTable(),showOrHideMsg(), showOrHideStats(), showOrHideStockForm(), showOrHideProductSection(), showOrHideCustomerSection()">
+
+  {% for message in messages %}
+  <div hidden class="alert" id="message-box">
+    <span onclick="closeAlert()" class="closebtn">&times;</span>
+    <strong id="msg"> {{message}} </strong>
+  </div>
+  {% endfor %}
+
+
+
+
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img src=' {%static "assets/img/courier2.jpg" %}' alt="" class="img-fluid rounded-circle">
+
+        <h1 class="text-light"> Welcome, Admin !</h1>
+
+        <div class="social-links mt-3 text-center">
+          <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
+          <a href="https://www.facebook.com/fulfillkaro" target="_blank" class="facebook"><i
+              class="bx bxl-facebook"></i></a>
+          <a href="https://www.instagram.com/fulfillkaro/" target="_blank" class="instagram"><i
+              class="bx bxl-instagram"></i></a>
+          <!-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+          <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> -->
+        </div>
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul style="height: 335px ;">
+          <!-- <li><a href="goto_home" class="nav-link scrollto "><i class="bx bx-home"></i> <span>Home</span></a></li> -->
+          <!-- <li><a href="#about" class="nav-link scrollto"><i class="bx bx-server"></i> <span>About</span></a></li> -->
+          <form method="POST" action="getStatistics">
+            {% csrf_token%}
+            <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden>
+            <button onclick="hide_product_section()" style="background-color:#040b14;color:darkgrey ; border: none;"
+              type="submit">
+              <li type="submit"><a class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                  <span class="team-member">Home</span></a></li>
+            </button>
+          </form>
+
+          <li class="" onclick="hideStats(), showTable(), hide_product_section()"><a href="done_booking"
+              class="nav-link scrollto "><i class="bx bx-book-content"></i>
+              <span style="color:darkgrey ;" class="team-member">View All Bookings </span></a></li>
+
+
+          <li onclick="hideStats(),hideTable(), showStockForm(), hide_product_section()">
+            <a style="color:darkgrey ;" class="nav-link scrollto"><i class="bx bx-server"></i> <span> Add New Stock
+              </span></a>
+          </li>
+
+          <li onclick="hideStats(),hideTable(), show_product_section(), hide_stock_form_section()">
+            <a style="color:darkgrey ;" class="nav-link scrollto"><i class="bx bx-server"></i> <span> Products
+              </span></a>
+          </li>
+
+          <form method="POST" action="showAllCustomers">
+            {% csrf_token%}
+            <!-- <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden> -->
+            <button
+              onclick="hide_product_section(), hide_stock_form_section(),hideStats(),hideTable(), show_customer_section()"
+              style="background-color:#040b14;color:darkgrey ; border: none;" type="submit">
+              <li type="submit"><a class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                  <span class="team-member"> All Customers </span></a></li>
+            </button>
+          </form>
+
+
+
+
+
+          <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+
+          <button style="background-color:cornflowerblue;">
+            <li><a href="logout" class=""> <span style=" color:black;  ">Logout </span></a></li>
+          </button>
+
+
+          <!-- <button class="open-button " onclick="openForm()">Login or Sign up</button> -->
+
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" style="padding-left: 20px ; padding-right: 20px ;">
+    <br><br>
+    <h1 style="text-align:center ;"><strong>Admin Dashboard </strong> </h1>
+
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+
+
+
+
+
+
+
+    <!-- =========== Statistics =============== -->
+    <!-- ICONS FROM https://icons.getbootstrap.com/ -->
+
+
+    <section id="statistics" class=" facts team-member-info">
+      <div class="row no-gutters">
+
+        <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
+          <div class="count-box">
+            <i class="bi bi-bar-chart-line-fill"></i>
+            <span id="stat_data">{{total_bookings}}</span>
+
+            <p><strong>Total Orders</strong></p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="count-box">
+            <i class="bi bi-check-square-fill"></i>
+            <span>{{total_delivered_bookings}} </span>
+            <p><strong>Total Delivered Parcels </strong> </p>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
+          <div class="count-box">
+            <i class="bi bi-arrow-clockwise"></i>
+            <span> {{total_returned_bookings}} </span>
+            <p><strong>Total Returned Bookings </strong> </p>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
+          <div class="count-box">
+            <i class="bi bi-credit-card-2-front-fill"></i>
+            <span> Rs. --- </span>
+            <p><strong>Payment Last Month</strong> </p>
+          </div>
+        </div>
+
+
+        <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="count-box">
+            <i class="bi bi-truck"></i>
+            <span>{{delivery_rate}} % </span>
+            <p><strong>Delivered Rate</strong> </p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
+          <div class="count-box">
+            <i class="bi bi-bar-chart-line"></i>
+            <span>{{return_rate}} % </span>
+            <p><strong>Return Rate</strong></p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <!-- =========== Statistics END =============== -->
+
+    <!-- =========== Booking Table =============== -->
+    <section id="all-booking" class="">
+      <div class="table-wrap hero-container ">
+        <h3 style="text-align: center ; color:blue;">Booking Details </h3>
+        <br>
+
+
+
+        <table id="Table" class="table myTable">
+
+          <input type="text" name="username" value={{user.username}} hidden>
+          <label> <strong> Consignment #: </strong> </label> <br>
+
+          <input id="myInput" onkeyup="searchFunction()"
+            style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+            type="text" name="cn_number" placeholder="Enter CN Number">
+
+          <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+          <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+
+          <!-- Data From -->
+          <form name="form1" method="POST" action="searchDateWise">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-4">
+
+                <input type="text" name="username" value={{user.username}} hidden>
+                <label> <strong> Date From: </strong> </label> <br>
+                <input
+                  style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+                  type="date" placeholder="dd-mm-yyyy" name="from_date" id="search_fd">
+
+                <!-- Date From End -->
+
+              </div>
+              <div class="col-4">
+                <!------------ Date To ------------>
+
+                <label> <strong> Date To: </strong> </label> <br>
+                <input
+                  style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+                  type="date" placeholder="dd-mm-yyyy" name="to_date" id="search_td">
+                <br><br>
+              </div>
+              <div class="col-4"><br>
+                <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
+                </button> <br><br>
+              </div>
+            </div>
+          </form>
+
+
+
+
+          <thead class="thead-primary">
+            <tr class="header" style="background-color:black ;">
+              <th>CN Number</th>
+              <th>Name</th>
+              <th>Mobile Number</th>
+              <th>Email</th>
+              <th>Address</th>
+              <th>Destination Address</th>
+              <th>Product Detail</th>
+              <th>Weight</th>
+              <th>Pieces</th>
+              <th>Special Handling</th>
+              <th>Service Type</th>
+              <th>Pickup City</th>
+              <th>Cash Amount</th>
+              <th>Status</th>
+              <th>Date and Time</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+            {% for book in all_bookings%}
+            <tr>
+              <td><strong> {{book.cn_number}} </strong> </td>
+              <!-- <td>55456400001</td> -->
+              <td> {{book.name}}</td>
+              <td> {{book.mobile_number}} </td>
+              <td> {{book.email}} </td>
+              <td> {{book.address}}</td>
+              <td> {{book.destination_city}}</td>
+              <td> {{book.product_detail}} </td>
+              <td> {{book.weight}} </td>
+              <td> {{book.pieces}} </td>
+              <td> {{book.special_handling}} </td>
+              <td> {{book.service_type}} </td>
+              <td> {{book.pickup_city}} </td>
+              <td> {{book.cash_amount}} </td>
+
+
+              <!-- <td> <form method="POST" action="delete_booking">
+                {% csrf_token%}
+                <input class="btn btn-danger" type="submit" name="delete_record" value={{book.cn_number}}  readonly >
+                </form> 
+            </td> -->
+
+              <form method="POST" action="save_changes">
+                {% csrf_token%}
+                <td>
+                  <select name="status">
+                    <option disabled="disabled" selected="selected" aria-placeholder={{book.status}}> {{book.status}}
+                    </option>
+                    <option> Booked </option>
+                    <option> Picked by FulfillKaro </option>
+                    <option> Packed by FulfillKaro </option>
+                    <option> Prepared for Movement to Destination City </option>
+                    <option> Arrival at Origin </option>
+                    <option> Physically Loaded for movement to Destination City </option>
+                    <option> In-Transit </option>
+                    <option> Loading Complete </option>
+                    <option> On the Way to be Deivered </option>
+                    <option>Delivered</option>
+                    <option> Refused by Customer</option>
+                    <option> Loaded for Return to Shipper </option>
+                    <option> Returned to Shipper </option>
+                  </select>
+                </td>
+                <td> {{book.dateTime}} </td>
+                <td>
+                  <input class=" " type="text" name="cn_number" value={{book.cn_number}} readonly hidden>
+                  <input class=" " type="text" name="product_description" value={{book.product_detail}} readonly hidden>
+                  <input class=" " type="text" name="pieces" value={{book.pieces}} readonly hidden>
+                  <button class="btn btn-primary" type="submit"> SAVE </button> <br><br>
+                  <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+                </td>
+
+              </form>
+              <form method="POST" action="delete_booking">
+                <input class=" " type="text" name="cn_number" value={{book.cn_number}} readonly hidden>
+                <input class=" " type="text" name="statu" value={{book.status}} readonly hidden>
+                <td><button onclick="return confirm('Are you sure you want to DELETE this Record ?')"
+                    class="btn btn-danger type=" submit"> DELETE </button> <br><br> </td>
+                {% csrf_token%}
+              </form>
+
+
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+
+
+
+      </div>
+    </section>
+
+    <!-- =========== Booking Table END =============== -->
+
+
+
+    <!-- ======== Stock Form =========== -->
+    <section id="stock_form_section">
+      <h2 style="font-family:fantasy; text-align: center;"> Enter New Stock Detail </h2><br><br>
+      <div>
+        <form enctype="multipart/form-data" method="POST" action="save_stock_record" class="stock-form-container">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-6">
+              <div class=" ">
+                <label class="label">Vendor's Username</label>
+                <p class="rq" id="rq_vun">*Required Field </p>
+                <input id="vu" class=" " type="text" name="username">
+              </div>
+            </div>
+            <div class=" col-6">
+              <div>
+                <label class="label">Vendor's Full Name</label>
+                <!-- <p class="rq" id="rq_vn">*Required Field </p> -->
+                <input id="vn" type="text" name="vendor_name">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <div class=" ">
+                <label class="label"> Product Name </label>
+                <p class="rq" id="rq_pn">*Required Field </p>
+                <input id="pn" class=" " type="text" name="product_name">
+              </div>
+            </div>
+            <div class=" col-6">
+              <div>
+                <label class="label">Product Description </label>
+                <p class="rq" id="rq_pd">*Required Field </p>
+                <input id="pd" type="text" name="product_description">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <div class=" ">
+                <label class="label"> SKU (Stock Keeping Unit) </label>
+                <p class="rq" id="rq_sku">*Required Field </p>
+                <input id="sku" class=" " type="text" name="sku">
+              </div>
+            </div>
+            <div class=" col-6">
+              <div>
+                <label class="label">Quantity Given</label>
+                <p class="rq" id="rq_qg">*Required Field </p>
+                <input id="qg" type="text" name="quantity_given">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+
+            <div class=" col-6">
+              <div>
+                <label class="label">Upload Image </label><br>
+                <p class="rq" id="rq_pi">*Required Field </p>
+                <input id="pi" type="file" name="product_image">
+                <br><br>
+
+              </div>
+            </div>
+          </div>
+          <button onclick=" return validate()" class="btn btn-primary" type="submit"> Done </button>
+
+        </form>
+      </div>
+    </section>
+
+    <!-- ======== Stock Form End  =========== -->
+
+    <!-- ======== Product Section ========== -->
+
+
+    <section id="product_section" class="">
+      <div class="table-wrap hero-container ">
+        <form method="POST" action="showProducts">
+          {% csrf_token %}
+          <label><strong> Vendor's Username: </strong></label><br>
+          <input type="text" name="amiadmin" value="1" hidden>
+          <input id="vendor_name"
+            style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+            type="text" name="username" placeholder="Enter Vendor's Username">
+
+          <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+
+        </form>
+        <table id="productTable" class="table myTable" style="overflow-x: auto; ">
+          <thead class="thead-primary">
+            <tr class="header" style="background-color:black ;">
+              <th>Product Image</th>
+              <th>Product Name</th>
+              <th>Product Description </th>
+              <th>Product SKU </th>
+              <th>Quantity Given </th>
+              <th>Quantity In-Process </th>
+              <th>Quantity Sold </th>
+              <th>Quantity Available </th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for prod in all_Products %}
+            <tr>
+
+              <form method="POST" action="editProduct">
+                {% csrf_token%}
+                <td> <img src='/media/{{prod.product_image}}' width="225" height="225" </td>
+                <td> {{prod.product_name}} </td>
+                <td> {{prod.product_description}} </td>
+                <td> <input type="text" value={{prod.sku}} name="sku" readonly> </td>
+                <td> <input type="text" value={{prod.quantity_given}} name="quantity_given" </td>
+                <td> <input type="text" value={{prod.quantity_in_process}} name="quantity_in_process" </td>
+                <td> <input type="text" value={{prod.quantity_sold}} name="quantity_sold" </td>
+                <td> <input type="text" value={{prod.quantity_available}} name="quantity_available" </td>
+                <td> <button class="btn btn-primary" type="submit"> SAVE </button> <br><br> </td>
+              </form>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ======== Product Section END ========== -->
+
+
+
+    <!-- All Customers Section -->
+    <section id="all_customers">
+      <table id="customerTable" class="table myTable" style="overflow-x: auto; ">
+        <thead class="thead-primary">
+          <tr class="header" style="background-color:black ;">
+            <th>Customer Username</th>
+            <th>Customer Consignment Id</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for each_user in context %}
+          <tr> 
+            <td> {{context.username}} </td>
+            <td> {{context.customer_id}} </td>
+
+          </tr>
+          {% endfor %}
+
+      
+        </tbody>
+      </table>
+
+    </section>
+
+    <!-- All Customers Section END -->
+
+
+
+  </main>
+  <!-- End #main -->
+
+
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>FulfillKaro.pk</span></strong>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
+        Designed by <a href="https://www.fulfillkaro.pk/"> FulfillKaro</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <!-- Vendor JS Files -->
+  <script src=' {%static "assets/vendor/aos/aos.js" %}'></script>
+  <script src=' {%static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/glightbox/js/glightbox.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/isotope-layout/isotope.pkgd.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/php-email-form/validate.js" %}'></script>
+  <script src=' {%static "assets/vendor/purecounter/purecounter.js" %}'></script>
+  <script src=' {%static "assets/vendor/swiper/swiper-bundle.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/typed.js/typed.min.js" %}'></script>
+  <script src=' {%static "assets/vendor/waypoints/noframework.waypoints.js" %}'></script>
+
+  <!-- Template Main JS File -->
+  <script src=' {%static "assets/js/main.js" %}'></script>
+
+  <script>
+    const teamMember = document.getElementsByClassName("team-member");
+    const teamMemberInfo = document.getElementsByClassName("team-member-info");
+
+    function searchFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("Table");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+
+
+  </script>
