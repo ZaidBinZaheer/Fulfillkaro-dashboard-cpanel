@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-+w7f#)t_db*+-9#f#q#pl9fv$uab1%o9#gxa+m4=pb94p8m8yx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['merchant.fulfillkaro.pk']
 
 
 # Application definition
@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'myproject2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'fulfillkaro',
-        'HOST':'127.0.0.1',
+        'NAME':'orgajorq_fulfillkaro',
+        'HOST':'localhost',
         'PORT':'3307',
-        'USER':'root',
-        'PASSWORD':'25october1999'
+        'USER':'orgajorq_fulfillkaro_admin',
+        'PASSWORD':'fulfillkaroadmin'
     }
 }
 
@@ -121,11 +121,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# MEDIA_ROOT = 
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
+MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
