@@ -2,5 +2,5 @@
 Dashboard for admin and customers of FulfillKaro
 
 
-This is the project being deployed on Heroku.com, that I have deleted
+This is the project being deployed on Cpanel
 
