@@ -5,6 +5,16 @@ from django.db import models
 
 # Create your models here.
 
+class Nci(models.Model):
+    record_no=models.AutoField(primary_key=True, default=0)
+    username=models.CharField(max_length=100, default="")
+    cn_number = models.BigIntegerField(default=0)
+    name=models.CharField(max_length=100, default=" ")
+    mobile_number=models.CharField(max_length=11,default=" ")
+    address=models.CharField(max_length=100,default=" ")
+    status=models.CharField(max_length=50,default=" ")
+    choice=models.CharField(max_length=50,default=" ")
+
 class Product(models.Model):
 
     product_no=models.AutoField(primary_key=True)
@@ -31,7 +41,7 @@ class Customer(models.Model):
 class BookingLog(models.Model):
 
     record_no=models.AutoField(primary_key=True, default=0)
-    cn_number = models.IntegerField(default=0)
+    cn_number = models.BigIntegerField(default=0)
     username=models.CharField(max_length=50, default=" ")
     name=models.CharField(max_length=100, default=" ")
     mobile_number=models.CharField(max_length=11,default=" ")

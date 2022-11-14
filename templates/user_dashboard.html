@@ -321,8 +321,10 @@
         document.getElementById("less_detailed_table").style.display = "none";
       }
       else {
+        show_searching_section()
         document.getElementById("less_detailed_table").style.display = "block";
       }
+      
     }
 
     function showOrHideLessDetailedTableCnSearch() {
@@ -386,6 +388,16 @@ function hideReq(){
 }
 
 
+var curday = function(sp){
+today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //As January is 0.
+var yyyy = today.getFullYear();
+
+if(dd<10) dd='0'+dd;
+if(mm<10) mm='0'+mm;
+return (mm+sp+dd+sp+yyyy);
+};
     function show_full_detailed_table() {
       document.getElementById("full_detailed_table").style.display = "block";
     }
@@ -514,8 +526,36 @@ function hide_product_section(){
 }
 
 
+function showOrHide_nci_section(){
+    // document.getElementById("hideValuesOnSelect").style.display = "none"
+  if ($('#nciTable td').length == 0) {
+        document.getElementById("nci_section").style.display = "none";
+      }
+      else {
+        document.getElementById("nci_section").style.display = "block";
+      }
+}
 
+function displayNciOptions(id, elementValue) {
+      document.getElementById(id).style.display = elementValue.value == 1 ? 'block' : 'none';
+      if ( elementValue.value == 0 ){
+        document.getElementById("asterisk").style.display = "none";
+      }
+   }
+function abishara(){
 
+  var x=document.getElementById("ta1").value
+  var y=document.getElementById("ta2").value
+  if (x.length == 0){
+    document.getElementById("ta1").value=document.getElementById("tb1").textContent
+    x=document.getElementById("ta1").value
+  }
+  if (y.length == 0){
+    document.getElementById("ta2").value=document.getElementById("tb2").textContent
+    y=document.getElementById("ta2").value
+  }
+
+}
 
   </script>
 
@@ -524,7 +564,7 @@ function hide_product_section(){
 
 <!-- right-side-content -->
 <body class=""
-  onload="hideReq(), hide_searching_section(), showOrHideMsg(), showOrHideProductSection() , showOrHideStats(), openOrHideBookingForm(), showOrhide_full_detailed_table(), showOrHideLessDetailedTable(), showOrHideLessDetailedTableCnSearch() ">
+  onload="showOrHide_nci_section(), hideReq(), hide_searching_section(), showOrHideMsg(), showOrHideProductSection() , showOrHideStats(), openOrHideBookingForm(), showOrhide_full_detailed_table(), showOrHideLessDetailedTable(), showOrHideLessDetailedTableCnSearch() ">
 
   {% for message in messages %}
 
@@ -539,14 +579,14 @@ function hide_product_section(){
 
 
   <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- <i class="bi bi-list mobile-nav-toggle d-xl-none"></i> -->
 
   <!-- ======= Header ======= -->
   <header id="header">
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src=' {%static "assets/img/courier2.jpg" %}' alt="" class="img-fluid rounded-circle">
+        <img src=' {%static "assets/img/fulfillkaro-logo.jpg" %}' alt="" class="img-fluid rounded-circle">
 
         <h1 class="text-light"> Welcome, {{user.username}} !</h1>
 
@@ -591,13 +631,21 @@ function hide_product_section(){
 
           <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden>
 
+<!-- 
           <li class="team-member" onclick="show_searching_section(), hideStats(), hide_booking_form(), hide_product_section()"><a
+            class="nav-link scrollto "><i class="bx bx-book-content"></i>
+            <span style="color:darkgrey ;" class="team-member">Track Your Booking </span></a></li> -->
+
+          <form method="POST" action="get_tracking_record_of_specific_user_record">
+            {% csrf_token %}
+
+            <input type="text" name="username" value={{user.username}} hidden>
+            <button style="background-color:#040b14;color:darkgrey ;border: none; " type="submit">
+          <li class="" onclick="show_searching_section(), hideStats(), hide_booking_form(), hide_product_section()"><a
               class="nav-link scrollto "><i class="bx bx-book-content"></i>
-              <span style="color:darkgrey ;" class="team-member">Track Your Booking </span></a></li>
-
-
-          <!-- <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>View Booking</span></a></li> -->
-
+              <span style="color:darkgrey ;" class="">Track Your Booking </span></a></li>
+            </button>
+          </form>
 
           <form method="POST" action="showProducts">
             {% csrf_token %}
@@ -609,7 +657,17 @@ function hide_product_section(){
             </button>
           </form>
 
-          <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+          <form method="POST" action="get_nci">
+            {% csrf_token %}
+            <input type="text" name="username" value={{user.username}} hidden>
+            <input type="text" name="amiadmin" value="0" hidden >
+            <button style="background-color:#040b14;color:darkgrey ;border: none; " type="submit">
+              <li><a onclick="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>
+                    NCI </span></a></li>
+            </button>
+          </form>
+
+        
 
           <button style="background-color:cornflowerblue;">
             <li><a href="logout" class=""> <span style=" color:black;  ">Logout </span></a></li>
@@ -721,7 +779,7 @@ function hide_product_section(){
     <form name="form1" method="POST" action="searchDateWise">
       {% csrf_token %}
       <div class="row">
-        <div class="col-4">
+        <div class="col-5">
 
           <input type="text" name="username" value={{user.username}} hidden>
           <label> <strong> Date From: </strong> </label> <br>
@@ -736,7 +794,7 @@ function hide_product_section(){
           <!-- Date From End -->
 
         </div>
-        <div class="col-4">
+        <div class="col-5">
           <!------------ Date To ------------>
 
           <label> <strong> Date To: </strong> </label> <br>
@@ -750,7 +808,7 @@ function hide_product_section(){
           <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
 
         </div>
-        <div class="col-4"><br>
+        <div class="col-2"><br>
           <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
           </button> <br><br>
         </div>
@@ -918,7 +976,7 @@ function hide_product_section(){
             <label class="label">Product</label>
             
 
-            <p> Select from the following List </p>
+            <p> Select from the following List <strong> (Copy-Paste the exact name) </strong> </p>
             <ul>
 
 
@@ -935,6 +993,7 @@ function hide_product_section(){
               <input style="background-color:white ; border: 0.5px solid black; width: 185px; height: 3px;" type="text"
                 id="p1" name="p1" placeholder="Enter Product Name">
               <input style="width: 185px ;" type="number" id="q2" name="q1" placeholder="Enter Quantity">
+              <br><br>
               <button onclick="addMoreFields()" type="button"> Add New Product </button>
               <button onclick="removeFields()" type="button"> Remove Product </button>
             </div>
@@ -993,16 +1052,15 @@ function hide_product_section(){
     <div class="table-wrap hero-container  ">
       <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
       <br>
-      <table id="LessDetailedTable" class="table myTable">
-
-        <!-- <input type="text" name="username" value={{user.username}} hidden> -->
+      <table id="LessDetailedTable" class=" " style="font-size:medium ; width: 100% ;">
 
 
         <thead class="thead-primary">
-          <tr class="header" style="background-color:black ;">
+          <tr class="header" style="background-color:black ; color:white">
             <th>CN Number</th>
-
-            <th>Product Detail</th>
+            <th>Consignee Name</th>
+            <th>Contact No.</th>
+            <th>Product </th>
             <th>Cash Amount</th>
             <th>Status</th>
           </tr>
@@ -1011,15 +1069,16 @@ function hide_product_section(){
           {% for book in all_bookings%}
           <tr>
             <td id="td"><strong> {{book.cn_number}} </strong> </td>
-
-            <td> {{book.product_detail }} </td>
+            <td style="background-color:aliceblue ;"> {{book.name}} </td>
+            <td> {{book.mobile_number}} </td>
+            <td style="background-color:aliceblue ;"> {{book.product_detail }} </td>
             <td> {{book.cash_amount}} </td>
             <form method="POST" action="getLog">
               {% csrf_token %}
               <input type="text" name="cn_number" value={{book.cn_number}} hidden>
 
-              <td> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
-                  style=" color:blue ;background-color:aliceblue ; border:none"> {{book.status}} </button> </td>
+              <td style="background-color:aliceblue ;"> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
+                  style=" color:blue ;background-color:aliceblue ; border:none; text-align:left ;"> {{book.status}} </button> </td>
 
             </form>
 
@@ -1032,17 +1091,7 @@ function hide_product_section(){
       </table>
 
     </div>
-    <!-- {% if book.status != "Delivered"  %}
-{% if book.status != "Refused by Customer"  %}
-
-<form method="POST" action="cancelRecord">
-  {% csrf_token %}
-  <input class=" " type="text" name="cn_number" value={{all_bookings.cn_number}} readonly hidden>
-<button onclick="return confirm('Are you sure you want to Cancel the Booking ?');" class="btn btn-danger" > <a style="color:white ;">Cancel Booking</a>
-  
-</form>
-{% endif %}
-{% endif %} -->
+ 
 
   </section>
 
@@ -1060,21 +1109,14 @@ function hide_product_section(){
     <div class="table-wrap hero-container  ">
       <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
       <br>
-      <table id="FullDetailedTable" class="table myTable">
+      <table id="FullDetailedTable" class=" myTable" style="font-size:x-small ;">
 
-        <!-- <input type="text" name="username" value={{user.username}} hidden>
-        <label> <strong> Consignment #: </strong> </label> <br>
-
-        <input id="myInput" onkeyup="searchFunction()"
-          style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
-          type="text" name="cn_number" placeholder="Enter CN Number">
-
-        <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
-       
-        </td> -->
+  
 
         <thead class="thead-primary">
-          <tr class="header" style="background-color:black ;">
+          <tr class="header" style="background-color:black ; color: white ;">
+            <th>Date and Time</th>
+            <th>Status</th>      
             <th>CN Number</th>
             <th>Name</th>
             <th>Mobile Number</th>
@@ -1088,9 +1130,8 @@ function hide_product_section(){
             <th>Service Type</th>
             <th>Pickup City</th>
             <th>Cash Amount</th>
-            <th>Status</th>
-            <th>Date and Time</th>
-            <th></th>
+  
+          
           </tr>
         </thead>
         <tbody>
@@ -1098,31 +1139,21 @@ function hide_product_section(){
 
           {% for book in bookings_log%}
           <tr>
-            <td><strong> {{book.cn_number}} </strong> </td>
-            <td id="td2"> {{book.name}}</td>
-            <td> {{book.mobile_number}} </td>
-            <td> {{book.email}} </td>
-            <td> {{book.address}}</td>
-            <td> {{book.destination_city}}</td>
-            <td> {{book.product_detail }} </td>
-            <td> {{book.weight}} </td>
-            <td> {{book.pieces}} </td>
-            <td> {{book.special_handling}} </td>
-            <td> {{book.service_type}} </td>
-            <td> {{book.pickup_city}} </td>
-            <td> {{book.cash_amount}} </td>
-
-
-            <!-- <td> <form method="POST" action="delete_booking">
-            {% csrf_token%}
-            <input class="btn btn-danger" type="submit" name="delete_record" value={{book.cn_number}}  readonly >
-            </form> 
-        </td> -->
-            <td> {{book.status}} </td>
-
-            <td> {{book.dateTime}} </td>
-
-
+            <td > {{book.dateTime}} </td>
+            <td style=" background-color: aliceblue; font-weight:bold ;"><u> {{book.status}} </u></td>            
+            <td " > {{book.cn_number}}  </td>
+            <td style=" background-color: aliceblue;" id="td2"> {{book.name}}</td>
+            <td "> {{book.mobile_number}} </td>
+            <td style=" background-color: aliceblue;"> {{book.email}} </td>
+            <td "> {{book.address}}</td>
+            <td style=" background-color: aliceblue;"> {{book.destination_city}}</td>
+            <td "> {{book.product_detail }} </td>
+            <td style=" background-color: aliceblue;"> {{book.weight}} </td>
+            <td "> {{book.pieces}} </td>
+            <td style=" background-color: aliceblue;"> {{book.special_handling}} </td>
+            <td "> {{book.service_type}} </td>
+            <td style=" background-color: aliceblue;"> {{book.pickup_city}} </td>
+            <td "> {{book.cash_amount}} </td>
 
           </tr>
           {% endfor %}
@@ -1157,13 +1188,13 @@ function hide_product_section(){
     <div class="table-wrap hero-container  ">
       <h3 style="text-align: center ; color:blue;">Your Booking Detail </h3>
       <br>
-      <table id="LessDetailedTableCnSearch" class="table">
-
-
+      <table id="LessDetailedTableCnSearch" class="" style="width:100% ;" >
         <thead class="thead-primary">
-          <tr class="header" style="background-color:black ;">
+          <tr class="header" style="background-color:black ; color: white;">
             <th>CN Number</th>
-            <th>Product Detail</th>
+            <th>Consignee Name</th>
+            <th>Contact No.</th>
+            <th>Product </th>
             <th>Cash Amount</th>
             <th>Status</th>
           </tr>
@@ -1171,15 +1202,16 @@ function hide_product_section(){
         <tbody>
           <tr>
             <td id="tableData"><strong> {{rec.cn_number}} </strong> </td>
-
-            <td> {{rec.product_detail }} </td>
+            <td style="background-color:aliceblue"> {{rec.name }} </td>
+            <td> {{rec.mobile_number }} </td>
+            <td style="background-color:aliceblue"> {{rec.product_detail }} </td>
             <td> {{rec.cash_amount}} </td>
             <form method="POST" action="getLog">
               {% csrf_token %}
 
-              <input type="text" name="cn_number" value={{rec.cn_number}} hidden>
+              <input type="text" name="cn_number" value="{{rec.cn_number}}" hidden>
 
-              <td> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
+              <td style="background-color:aliceblue"> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
                   style=" color:blue ;background-color:aliceblue ; border:none"> {{rec.status}} </button> </td>
 
             </form>
@@ -1203,11 +1235,14 @@ function hide_product_section(){
 
 
   <!-- =========== Products Section ============== -->
-  <section id="product_section" class="">
-    <table id="productTable" style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
-      <tr>
-        <th> Product Image</th>
-        <th> Product Name</th>
+  <section id="product_section" >
+    <div class="table-wrap hero-container " >
+    <table id="productTable" class="" style="width: 100% ; font-size:small ;">
+      <thead class="thead-primary">
+      <tr class="header" 
+      style="background-color:black ; color: white;">
+      <th> Product Image</th>  
+      <th> Product Name</th>
         <th>Product Description </th>
         <th>Product SKU </th>
         <th>Quantity Given </th>
@@ -1215,23 +1250,93 @@ function hide_product_section(){
         <th>Quantity Sold </th>
         <th>Quantity Available </th>
       </tr>
+    </thead>
+    <tbody>
       {% for prod in all_Products %}
       <tr>
-        <td> <img src='/media/{{prod.product_image}}' width="225" height="225" </td>
-        <td> {{prod.product_name}} </td>
-        <td> {{prod.product_description}} </td>
-        <td> {{prod.sku}} </td>
-        <td> {{prod.quantity_given}} </td>
-        <td> {{prod.quantity_in_process}} </td>
-        <td> {{prod.quantity_sold}} </td>
-        <td> {{prod.quantity_available}} </td>
+        <td style="width:20%;"> <img src='/media/{{prod.product_image}}' width="150" height="150" </td>
+        <td style="width:10% ; background-color: aliceblue;"> {{prod.product_name}} </td>
+        <td style="width:10%;"> {{prod.product_description}} </td>
+        <td style="width:10% ; background-color: aliceblue;"> {{prod.sku}} </td>
+        <td style="width:10%;"> {{prod.quantity_given}} </td>
+        <td style="width:10% ; background-color: aliceblue;"> {{prod.quantity_in_process}} </td>
+        <td style="width:10%;"> {{prod.quantity_sold}} </td>
+        <td style="width:10%; background-color: aliceblue;"> {{prod.quantity_available}} </td>
       </tr>
       {% endfor %}
+    </tbody>
     </table>
+  </div>
   </section>
 
   <!-- =========== Products Section END ============== -->
 
+<!-- ============ NCI Section ============== -->
+<section id="nci_section" >
+   <br>
+    <div class="table-wrap hero-container " >
+      <table id="nciTable" class="" style="width: 100% ; font-size:medium ;">
+        <thead class="thead-primary">
+        <tr class="header" 
+        style="background-color:black ; color: white;">
+  
+          <th> Consignment # </th>
+          <th> Consignee Name </th>
+          <th> Consignee Contact # </th>
+          <th> Consignee Address </th>
+          <th> Choose an Option </th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if msg == "No Record Found !" %}
+          <td style="border:none ;"> <h2 > {{msg}}</h2> </td>
+          {% endif %}
+        {% for n in active_nci %}
+        <tr>
+          <td> {{n.cn_number}} </td>
+          <td style=" background-color: aliceblue;"> {{n.name}} </td>
+          <td id="tb1">{{n.mobile_number}}</td>
+          <td id="tb2" style=" background-color: aliceblue;">{{n.address}}</td>     
+          <form method="POST" action="updated_nci_booking">
+            {% csrf_token%}
+            <input type="text" value="{{n.cn_number}}" name="cn_number" hidden>
+            <td style="text-align:center ; width:200px ;">
+             
+                <select  name="choice" onchange="displayNciOptions('hideValuesOnSelect', this)">
+                  <option disabled="disabled" selected="selected" > Select what should be done </option>
+                  <option value="0"> Return the Parcel </option>
+                  <option value="1"> Go for Re-attempt </option>
+                </select><span id="asterisk" style="color:red ; font-size:x-large ;">        *</span>
+                <br><br>
+
+                <div style="text-align:left ; background-color: aliceblue; " id="hideValuesOnSelect" >
+                
+                  <label> New (Correct) Contact #:</label><br>
+                  <input id="ta1" type="text" placeholder="{{n.mobile_number}}"  name="new_contact"><br>
+                  <label> New (Correct) Address:</label>
+                  <textarea id="ta2" rows="4" cols="40" type="text" placeholder="{{n.address}}"  name="new_address"></textarea>
+                  
+                </div>
+              
+            </td>
+           
+            <td> <button type="submit" class="btn btn-primary" onclick="abishara()"> Save </button> </td>
+            <!-- return confirm('Are you sure you want to Re-attempt the Booking with the updated Address/Contact Number ?') -->
+          </form> 
+          </tr>
+       
+        {% endfor %}
+      </tbody>
+      </table>
+    </div>
+  
+    
+
+
+</section>
+
+<!-- ============ NCI Section END ============== -->
 
 
 </main>

@@ -1,7 +1,7 @@
 # from asyncio.windows_events import NULL
 from contextlib import nullcontext
 # import email
-from datetime import datetime
+from datetime import datetime, timedelta
 from multiprocessing.sharedctypes import Value
 from pprint import pprint
 import statistics
@@ -10,14 +10,16 @@ from django.shortcuts import render, redirect
 import imp
 from django.shortcuts import render
 from django.http import HttpResponse
-from myapp2.models import Booking, BookingLog, Customer
-from .booking_form import BookingForm
+from myapp2.models import Booking, BookingLog, Customer, Nci
+# from ..templates.raw_files.booking_form import BookingForm
 from .models import Product
-from .ProductForm import ProductForm
+# from .ProductForm import ProductForm
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 import random
+import requests
+import json
 # Create your views here.
 
 def index(request):
@@ -221,6 +223,8 @@ def after_booking(request):
         now = datetime.now()
         # dd-mm-YY H:M:S
         dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+        dt_string = datetime.strptime(dt_string, '%Y-%m-%d %H:%M:%S')
+        dt_string = dt_string + timedelta(hours=5)
 
         rec=BookingLog.objects.last().record_no
         rec+=1
@@ -346,6 +350,7 @@ def show_bookings(request):
     return render(request, 'admin_dashboard.html', {'all_bookings':all_bookings})
 
 def done_booking(request):
+    
     all_bookings=BookingLog.objects.all()
     # return redirect('/', {'all_bookings':all_bookings} )
     return render(request, 'admin_dashboard.html', {'all_bookings':all_bookings})
@@ -353,10 +358,10 @@ def done_booking(request):
 
 def save_changes(request):
     updated_status=request.POST['status']
-   
     cn_num=request.POST['cn_number']
     record=BookingLog.objects.filter(cn_number=cn_num).last()
     username=record.username
+    print("USERNAME IS ----------> "+username)
     name=record.name
     mobile_number=record.mobile_number
     email=record.email
@@ -375,94 +380,68 @@ def save_changes(request):
     status=updated_status
     
     now = datetime.now()
-    # dd/mm/YY H:M:S
+        # dd-mm-YY H:M:S
     dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
-    dateTime=dt_string
+    dt_string = datetime.strptime(dt_string, '%Y-%m-%d %H:%M:%S')
+    dt_string = dt_string + timedelta(hours=5)
     
     rec=BookingLog.objects.last().record_no
     rec+=1
 
-    new_rec= BookingLog.objects.create(record_no=rec, cn_number=cn_num, username=username,  name=name, mobile_number=mobile_number, email=email, destination_city=destination_city, address=address, default_origin_city=default_origin_city, weight=weight, pieces=piecess,customer_reference_number=customer_reference_number,service_type=service_type, flyer_number=flyer_number, special_handling=special_handling , product_detail=product_detail,cash_amount=cash_amount,pickup_city=pickup_city, status=status, dateTime=dateTime )
+    new_rec= BookingLog.objects.create(record_no=rec, cn_number=cn_num, username=username,  name=name, mobile_number=mobile_number, email=email, destination_city=destination_city, address=address, default_origin_city=default_origin_city, weight=weight, pieces=piecess,customer_reference_number=customer_reference_number,service_type=service_type, flyer_number=flyer_number, special_handling=special_handling , product_detail=product_detail,cash_amount=cash_amount,pickup_city=pickup_city, status=status, dateTime=dt_string )
     new_rec.save()
 
     # n_product=request.POST['product_description']
     # n_pieces=request.POST['pieces']
+    if updated_status=="Refused by Customer":
+        recN=0
+        if Nci.objects.all().exists():
+            recN=Nci.objects.last().record_no+1
+        new_nci=Nci.objects.create(record_no=recN, username=username, cn_number=cn_num, name=name, mobile_number=mobile_number, address=address, status="active")
+        new_nci.save()
+    elif (updated_status=="Delivered") | (updated_status=="Returned to Shipper"):
 
-    if ',' in str(piecess):
-        piec=piecess.split(", ")
-        prod=product_detail.split(", ")
-    else:
-        piec=[piecess]
-        prod=[product_detail]
-        print("**************************************")
-        print(piec)
-        print(prod)
-    if Product.objects.filter(username=username):
-        if updated_status == "Delivered":
-            for i in range(len(prod)):
-                pro=Product.objects.get(product_description=prod[i])
-                pro.quantity_in_process-=int(piec[i])
-                pro.quantity_sold+=int(piec[i])
-                pro.save()
-        elif updated_status == "Returned to Shipper":
-            for i in range(len(prod)):
-                pro=Product.objects.get(product_description=prod[i])
-                pro.quantity_in_process-=int(piec[i])
-                pro.quantity_available+=int(piec[i])
-                pro.save()
- 
-    else:
-        messages.info(request, "No such Product with this Username !!! ")
-        return render(request, 'admin_dashboard.html', )
+        if ',' in str(piecess):
+            piec=piecess.split(", ")
+            prod=product_detail.split(", ")
+        else:
+            piec=[piecess]
+            prod=[product_detail]
+            print("**************************************")
+            print(piec)
+            print(prod)
+
+        if Product.objects.filter(username=username).exists():
+            if updated_status == "Delivered":
+                for i in range(len(prod)):
+                    pro=Product.objects.get(product_description=prod[i])
+                    pro.quantity_in_process-=int(piec[i])
+                    pro.quantity_sold+=int(piec[i])
+                    pro.save()
+            elif updated_status == "Returned to Shipper":
+                for i in range(len(prod)):
+                    pro=Product.objects.get(product_description=prod[i])
+                    pro.quantity_in_process-=int(piec[i])
+                    pro.quantity_available+=int(piec[i])
+                    pro.save()
         
+        else:
+            messages.info(request, "No such Product with this Username !!! ")
+            return render(request, 'admin_dashboard.html', )
+        # reattempt=request.POST['reattempt']
+        # if reattempt=="1":
+        #     delete_reattempt=BookingLog.objects.filter(cn_number=cn_num, status="Re-attempt the Booking")| BookingLog.objects.filter(cn_number=cn_num, status="Ready for Return")
+        #     delete_reattempt.delete()   
     return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
     
 
 
 
-#     last_data=Booking.objects.last()
-    
-#     if Booking.objects.filter(cn_number=last_data.cn_number).exists():
-#         # print("*********************** ", last_data.cn_number)
-#         # all_bookings=Booking.objects.all()
-#         all_bookings={'book':last_data}
-#         # print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&",all_bookings['book'].cn_number)
-#         return render(request, 'after_booking.html', {'all_bookings': last_data})
-        
-#     else:
-#         print("*********************** NOT DONE *********************")
-
 
 
 def delete_booking(request):
     cn_number=request.POST['cn_number']
-    statu=request.POST['statu']
-    if statu=='Picked':
-        statu+=' by FulfillKaro'
-    elif statu=='Packed':
-        statu+=' by FulfillKaro'
-    elif statu=='Prepared':
-        statu+=' for Movement to Destination City'
-    elif statu=='Arrival':
-        statu+=' at Origin'
-    elif statu=='Physically':
-        statu+=' Loaded for movement to Destination City'
-    elif statu=='Loading':
-        statu+=' for Return to Shipper'
-    elif statu=='Returned':
-        statu+=' to Shipper'
-    elif statu=='On':
-        statu+=' the Way to be Deivered'
-    elif statu=='Refused':
-        statu+=' by Customer'
-    elif statu=='Loaded':
-        statu+=' for Return to Shipper'
-    elif statu=='Refused':
-        statu+=' by Customer'
-
-                
-    print("____________________________")
-    print(cn_number,"   "+ statu )
+    statu=request.POST['statu'] 
     member = BookingLog.objects.filter(cn_number=cn_number, status=statu).last()
     member.delete()
     return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
@@ -482,8 +461,8 @@ def getStatistics(request):
             'total_bookings':total_bookings,
             'total_delivered_bookings':total_delivered_bookings,
             'total_returned_bookings':total_returned_bookings,
-            'delivery_rate':round((total_delivered_bookings/total_bookings)*100, 2),
-            'return_rate':round(total_returned_bookings/total_bookings, 2)
+            'delivery_rate':round((total_delivered_bookings/(total_delivered_bookings+total_returned_bookings))*100, 2),
+            'return_rate':round(total_returned_bookings/(total_delivered_bookings+total_returned_bookings), 2)
         }
         return render(request, 'admin_dashboard.html',stats)
     else:
@@ -495,8 +474,8 @@ def getStatistics(request):
                 'total_bookings':total_bookings,
                 'total_delivered_bookings':total_delivered_bookings,
                 'total_returned_bookings':total_returned_bookings,
-                'delivery_rate':round((total_delivered_bookings/total_bookings)*100,2),
-                'return_rate':round(total_returned_bookings/total_bookings, 2)
+                'delivery_rate':round((total_delivered_bookings/(total_delivered_bookings+total_returned_bookings))*100,2),
+                'return_rate':round(total_returned_bookings/(total_delivered_bookings+total_returned_bookings), 2)
             }
         else:
             stats={
@@ -608,8 +587,8 @@ def searchDateWise(request):
             return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
         else:
             messages.info(request, "No Record in this Time Range !!!")
-            return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
-            # return render(request, 'user_dashboard.html')
+            # return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+            return render(request, 'user_dashboard.html')
     else:
         if username=="admin":
             return render(request, 'admin_dashboard.html',{'all_bookings': filtered_rec} )
@@ -697,6 +676,8 @@ def showAllCustomers(request):
         'customer_id':[]
     }
     all_u=User.objects.all()
+    
+    print(all_u)
 
     for i in range (len(all_u)):
         # print("********************* User ", (i+1), " ************")
@@ -710,3 +691,217 @@ def showAllCustomers(request):
     return render(request, 'admin_dashboard.html', {'context':context} )
 
     
+
+def show_api(request):
+    leapord_tracking_number=request.POST['leapord_tracking_number']
+    # messages.info(request, 'You Entered: '+leapord_tracking_number)
+
+    url='http://new.leopardscod.com/webservice/trackBookedPacket/?'
+
+    querystring={
+    'api_key' : 'D8C01F4A1E2115914D0A7D20369B2644',
+    'api_password' : 'HUSNAIN1@1',
+    'track_numbers' : leapord_tracking_number   
+    }
+    response=requests.get(url, params=querystring).json()
+    if response['packet_list'][0]['Tracking Detail']!= None:
+        # print(json.dumps(response.json(), indent=4, sort_keys=True))
+        tracking_detail=response['packet_list'][0]['Tracking Detail']
+        other_detail={
+
+            'track_number': response['packet_list'][0]['track_number'],
+            'arival_dispatch_weight': round((int(response['packet_list'][0]['arival_dispatch_weight'])/1000), 3),
+            'booked_packet_no_piece': response['packet_list'][0]['booked_packet_no_piece'],
+            'booked_packet_collect_amount': response['packet_list'][0]['booked_packet_collect_amount'],
+            'booked_packet_order_id': response['packet_list'][0]['booked_packet_order_id'],
+            'origin_city_name': response['packet_list'][0]['origin_city_name'],
+            'destination_city_name': response['packet_list'][0]['destination_city_name'],
+            'shipment_name_eng': response['packet_list'][0]['shipment_name_eng'],
+            'shipment_address': response['packet_list'][0]['shipment_address'],
+            'consignment_name_eng': response['packet_list'][0]['consignment_name_eng'],
+            'consignment_address': response['packet_list'][0]['consignment_address'],
+            'booked_packet_id': response['packet_list'][0]['booked_packet_id'],
+            
+            'td': tracking_detail
+        }
+        more_detail=[]
+        more_detail.append(other_detail)
+
+    else:
+        messages.info(request, 'No Record with Tracking # '+leapord_tracking_number)
+        return render(request, 'admin_dashboard.html')
+
+
+    return render(request, 'admin_dashboard.html', {'tracking_detail':more_detail})
+    
+
+def get_tracking_record_of_specific_user_record(request):
+    
+    username=request.POST['username']
+    rec=BookingLog.objects.filter(username=username)
+    cn_list=[]
+    for i in range(len(rec)):
+        if rec[i].cn_number not in cn_list:
+            cn_list.append(rec[i].cn_number)
+    filtered_rec=[]
+    for i in range(len(cn_list)):
+        filtered_rec.append(rec.filter(cn_number=cn_list[i]).last())
+
+    if filtered_rec == []:
+        messages.info(request, "No Record Found !!!")
+        return render(request, 'user_dashboard.html')
+    else:
+        return render(request, 'user_dashboard.html',{'all_bookings': filtered_rec} )
+
+  
+def get_nci(request):
+    username=request.POST['username']
+    
+    if Nci.objects.filter(username=username, status="active").exists():
+        print("USERNAME IS : "+username)
+        active_nci=Nci.objects.filter(username=username, status="active")
+        return render(request, 'user_dashboard.html',{'active_nci': active_nci} )
+
+    else:
+        msg="No Record Found !"
+        return render(request, 'user_dashboard.html', {'msg': msg} )
+    
+def updated_nci_booking(request):
+    length_of_request_received= len(request.POST)
+    choice=""
+    if length_of_request_received > 4:
+        choice=request.POST['choice']
+
+    else:
+        choice="1"
+
+    if choice=="1":
+        print('********************************** USER CHOSE FOR RE-ATTEMPT ********************')
+        new_contact=request.POST['new_contact']
+        new_address=request.POST['new_address']
+        cn_number=request.POST['cn_number']
+        update_Booking_log=BookingLog.objects.filter(cn_number=cn_number).last()
+        
+        new_status="Re-attempt the Booking"
+        # update_Booking_log.save()
+        rec=BookingLog.objects.last().record_no
+        rec+=1
+        now = datetime.now()
+        # dd-mm-YY H:M:S
+        dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+        dt_string = datetime.strptime(dt_string, '%Y-%m-%d %H:%M:%S')
+        dt_string = dt_string + timedelta(hours=5)
+        booking= BookingLog.objects.create(record_no=rec, cn_number=cn_number, username=update_Booking_log.username,  name=update_Booking_log.name, mobile_number=new_contact, email=update_Booking_log.email, destination_city=update_Booking_log.destination_city, address=new_address, default_origin_city=update_Booking_log.default_origin_city, weight=update_Booking_log.weight, pieces=update_Booking_log.pieces,customer_reference_number=update_Booking_log.customer_reference_number,service_type=update_Booking_log.service_type, flyer_number=update_Booking_log.flyer_number, special_handling=update_Booking_log.special_handling , product_detail=update_Booking_log.product_detail,cash_amount=update_Booking_log.cash_amount,pickup_city=update_Booking_log.pickup_city, status=new_status, dateTime=dt_string )
+        booking.save()
+        # delete_nci_record=Nci.objects.filter(cn_number=cn_number)
+        # delete_nci_record.delete()
+        change_status=Nci.objects.filter(cn_number=cn_number).last()
+        if change_status.status=='active':
+            recN=0
+            if Nci.objects.exists():
+                recN=Nci.objects.last().record_no+1
+            new_nci=Nci.objects.create(record_no=recN, username=change_status.username, cn_number=change_status.cn_number, name=change_status.name, mobile_number=new_contact, address=new_address, status="inactive", choice='Re-attempt')
+            new_nci.save()
+        change_status.status="inactive"
+        change_status.save()
+
+    else:
+        print('********************************** USER CHOSE FOR RETURN ********************')
+        cn_number=request.POST['cn_number']
+        update_Booking_log=BookingLog.objects.filter(cn_number=cn_number).last()
+        
+        new_status="Ready for Return"
+        # update_Booking_log.save()
+        rec=BookingLog.objects.last().record_no
+        rec+=1
+        now = datetime.now()
+        # dd-mm-YY H:M:S
+        dt_string = now.strftime("%Y-%m-%d %H:%M:%S")
+        dt_string = datetime.strptime(dt_string, '%Y-%m-%d %H:%M:%S')
+        dt_string = dt_string + timedelta(hours=5)
+        booking= BookingLog.objects.create(record_no=rec, cn_number=cn_number, username=update_Booking_log.cn_number,  name=update_Booking_log.name, mobile_number=update_Booking_log.mobile_number, email=update_Booking_log.email, destination_city=update_Booking_log.destination_city, address=update_Booking_log.address, default_origin_city=update_Booking_log.default_origin_city, weight=update_Booking_log.weight, pieces=update_Booking_log.pieces,customer_reference_number=update_Booking_log.customer_reference_number,service_type=update_Booking_log.service_type, flyer_number=update_Booking_log.flyer_number, special_handling=update_Booking_log.special_handling , product_detail=update_Booking_log.product_detail,cash_amount=update_Booking_log.cash_amount,pickup_city=update_Booking_log.pickup_city, status=new_status, dateTime=dt_string )
+        booking.save()
+        # delete_nci_record=Nci.objects.filter(cn_number=cn_number)
+        # delete_nci_record.delete()
+        change_status=Nci.objects.filter(cn_number=cn_number).last()
+        if change_status.status=='active':
+            recN=0
+            if Nci.objects.exists():
+                recN=Nci.objects.last().record_no+1
+            new_nci=Nci.objects.create(record_no=recN, username=change_status.username, cn_number=change_status.cn_number, name=change_status.name, mobile_number=change_status.mobile_number, address=change_status.address, status="inactive", choice='Return')
+            new_nci.save()
+        change_status.status="inactive"
+        change_status.save()
+        # cn_number=request.POST['cn_number']
+        # update_Booking_log=BookingLog.objects.filter(cn_number=cn_number).last()
+        # update_Booking_log.status="Ready for Return"
+        # update_Booking_log.save()
+        # # delete_nci_record=Nci.objects.filter(cn_number=cn_number)
+        # # delete_nci_record.delete()
+        # change_status=Nci.objects.get(cn_number=cn_number, status="active")
+        # change_status.status="inactive"
+        # change_status.save()
+    
+    # print("USER SELECTED:      "+choice)
+    return render(request, 'user_dashboard.html')
+
+
+def get_nci_for_admin(request):
+    # if (BookingLog.objects.filter(status="Re-attempt the Booking").exists()) | (BookingLog.objects.filter(status="Ready for Return").exists()):
+    #     active_nci=BookingLog.objects.filter(status="Re-attempt the Booking")| BookingLog.objects.filter(status="Ready for Return")
+    #     return render(request, 'admin_dashboard.html',{'active_nci': active_nci} )
+    
+    # if (Nci.objects.filter(choice="Re-attempt").exists()) | (Nci.objects.filter(choice="Return").exists()):
+    #     active_nci=Nci.objects.filter(choice="Re-attempt")| Nci.objects.filter(choice="Return")
+    #     return render(request, 'admin_dashboard.html',{'active_nci': active_nci} )
+  # if (Nci.objects.filter(choice="Re-attempt").exists()) | (Nci.objects.filter(choice="Return").exists()):
+    #     cn_list=[]
+    #     all_nci=Nci.objects.all()
+    #     for i in range(len(all_nci)):
+    #         if all_nci[i].cn_number not in cn_list:
+    #             cn_list.append(all_nci[i].cn_number)
+    #     active_nci=[]
+    #     for i in range(len(cn_list)):
+    #         if (all_nci.filter(cn_number=cn_list[i]).last().choice == 'Re-attempt') | (all_nci.filter(cn_number=cn_list[i]).last().choice == 'Return'):
+    #             active_nci.append(all_nci[i])
+    #     return render(request, 'admin_dashboard.html',{'active_nci': active_nci} )
+    
+    if Nci.objects.all().exists():
+        active_nci=Nci.objects.all()
+        return render(request, 'admin_dashboard.html',{'active_nci': active_nci} )
+    else:
+        msg="No Record Found !"
+        return render(request, 'admin_dashboard.html', {'msg': msg} )
+
+
+
+
+
+def get_total_reattempts(request):
+    ## IMPORTANT
+    # active status is actually inactive for admin unlike user
+    # inactive status is actually active for admin unlike user
+    all_nci=Nci.objects.all()
+    cn_list=[]
+    username_list=[]
+    total_active_nci=[]
+    for i in range(len(all_nci)):
+        if all_nci[i].cn_number not in cn_list:
+            cn_list.append(all_nci[i].cn_number)
+        if all_nci[i].username not in username_list:
+            username_list.append(all_nci[i].username)
+    
+    for i in range(len(cn_list)):
+        total_active_nci.append(len(all_nci.filter(cn_number=cn_list[i], status='inactive', choice="Re-attempt")))
+
+    list_active_nci={
+        'cn_list':cn_list, 
+        'username_list':username_list,
+        'total_active_nci':total_active_nci
+    }
+    active_nci_list=[]
+    for j in range(len(cn_list)):
+        active_nci_list.append([cn_list[j], username_list[j], total_active_nci[j]])
+
+    print(active_nci_list)
+    return render(request, 'admin_dashboard.html' , {'list_active_nci':active_nci_list})

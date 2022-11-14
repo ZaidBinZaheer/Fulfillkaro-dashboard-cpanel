@@ -26,5 +26,12 @@ urlpatterns=[
     path('showProducts', views.showProducts, name="showProducts"),
     path('editProduct', views.editProduct, name="editProduct"),
     path('showAllCustomers', views.showAllCustomers, name="showAllCustomers"),
+    path('show_api', views.show_api, name="show_api"),
+    path('get_tracking_record_of_specific_user_record', views.get_tracking_record_of_specific_user_record, name="get_tracking_record_of_specific_user_record"),
+    path('get_nci', views.get_nci, name="get_nci"),
+    path('updated_nci_booking', views.updated_nci_booking, name="updated_nci_booking"),
+    path('get_nci_for_admin', views.get_nci_for_admin, name="get_nci_for_admin"),
+    # path('get_active_nci_for_admin', views.get_active_nci_for_admin, name="get_active_nci_for_admin"),
+    path('get_total_reattempts', views.get_total_reattempts, name="get_total_reattempts"),
     
     ]

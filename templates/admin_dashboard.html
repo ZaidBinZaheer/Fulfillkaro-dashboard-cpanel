@@ -273,7 +273,7 @@
   </style>
   <script>
     function showOrHideTable() {
-      if ($('#Table td').length == 0) {
+      if ($('#Table td').length < 2) {
         document.getElementById("all-booking").style.display = "none";
       }
       else {
@@ -326,7 +326,15 @@
       else {
         document.getElementById("product_section").style.display = "block";
       }
-
+    }
+   
+    function showOrHideLeapordTrackingSection() {
+      if ($('#leapord_tracking_table td').length == 0) {
+        document.getElementById("leapord_tracking_section").style.display = "none";
+      }
+      else {
+        document.getElementById("leapord_tracking_section").style.display = "block";
+      }
     }
     function hide_product_section() {
       document.getElementById("product_section").style.display = "none";
@@ -346,11 +354,12 @@
       document.getElementById("all_customers").style.display = "none";
     }
     function showOrHideCustomerSection() {
-      if ($('#customerTable td').length == 0) {
-        document.getElementById("all_customers").style.display = "none";
-      }
-      else {
+      var x=document.getElementById("checkForCustomerTable").textContent.length;
+      if (x>2){
         document.getElementById("all_customers").style.display = "block";
+      }
+      else{
+        document.getElementById("all_customers").style.display = "none";
       }
 
     }
@@ -434,13 +443,54 @@
         alert(document.getElementById("msg").textContent)
       }
     }
+    function show_leapord_tracking_section() {
+      document.getElementById("leapord_tracking_section").style.display = "block";
+    }
+    function hide_leapord_tracking_section() {
+      document.getElementById("leapord_tracking_section").style.display = "none";
+    }
+  
+
+    function showOrHide_nci_section(){
+
+  if ($('#nciTable td').length == 0) {
+        document.getElementById("nci_section").style.display = "none";
+      }
+      else {
+        document.getElementById("nci_section").style.display = "block";
+      }
+}
+function showOrHide_active_nci_section(){
+
+if ($('#active_nci td').length == 0) {
+      document.getElementById("active_nci_section").style.display = "none";
+    }
+    else {
+      document.getElementById("active_nci_section").style.display = "block";
+    }
+}
+
+function hide_nci_section(){
+  document.getElementById("nci_section").style.display = "none";
+}
+
+$(document).ready(function() {
+    $('#Table').DataTable( {
+         order: [[3, 'desc']],
+        "pagingType": "full_numbers"
+
+    } );
+} );
+
+
 
   </script>
 
 </head>
 
-<body class=""
-  onload="hideReq(), showOrHideTable(),showOrHideMsg(), showOrHideStats(), showOrHideStockForm(), showOrHideProductSection(), showOrHideCustomerSection()">
+<body class="" onload="showOrHide_active_nci_section(), showOrHide_nci_section(), hide_leapord_tracking_section(), hideReq(), showOrHideTable(),showOrHideMsg(), 
+  showOrHideStats(), showOrHideStockForm(), showOrHideProductSection(), showOrHideCustomerSection()
+  showOrHideLeapordTrackingSection()">
 
   {% for message in messages %}
   <div hidden class="alert" id="message-box">
@@ -454,14 +504,14 @@
 
 
   <!-- ======= Mobile nav toggle button ======= -->
-  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <!-- <i class="bi bi-list mobile-nav-toggle d-xl-none"></i> -->
 
   <!-- ======= Header ======= -->
   <header id="header">
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src=' {%static "assets/img/courier2.jpg" %}' alt="" class="img-fluid rounded-circle">
+        <img src=' {%static "assets/img/fulfillkaro-logo.jpg" %}' alt="" class="img-fluid rounded-circle">
 
         <h1 class="text-light"> Welcome, Admin !</h1>
 
@@ -490,17 +540,19 @@
             </button>
           </form>
 
-          <li class="" onclick="hideStats(), showTable(), hide_product_section()"><a href="done_booking"
-              class="nav-link scrollto "><i class="bx bx-book-content"></i>
+          <li class="" onclick="hideStats(), showTable(), hide_product_section(), hide_leapord_tracking_section()"><a
+              href="done_booking" class="nav-link scrollto "><i class="bx bx-book-content"></i>
               <span style="color:darkgrey ;" class="team-member">View All Bookings </span></a></li>
 
 
-          <li onclick="hideStats(),hideTable(), showStockForm(), hide_product_section()">
+          <li
+            onclick="hide_nci_section(), hideStats(),hideTable(), showStockForm(), hide_product_section(),hide_leapord_tracking_section()">
             <a style="color:darkgrey ;" class="nav-link scrollto"><i class="bx bx-server"></i> <span> Add New Stock
               </span></a>
           </li>
 
-          <li onclick="hideStats(),hideTable(), show_product_section(), hide_stock_form_section()">
+          <li
+            onclick="hide_customer_section(), hideStats(),hideTable(), show_product_section(), hide_stock_form_section(),hide_leapord_tracking_section()">
             <a style="color:darkgrey ;" class="nav-link scrollto"><i class="bx bx-server"></i> <span> Products
               </span></a>
           </li>
@@ -509,16 +561,28 @@
             {% csrf_token%}
             <!-- <input class="input--style-4" type="text" name="username" value={{user.username}} readonly hidden> -->
             <button
-              onclick="hide_product_section(), hide_stock_form_section(),hideStats(),hideTable(), show_customer_section()"
+              onclick="hide_product_section(), hide_stock_form_section(),hideStats(),hideTable(),hide_leapord_tracking_section(), show_customer_section()"
               style="background-color:#040b14;color:darkgrey ; border: none;" type="submit">
               <li type="submit"><a class="nav-link scrollto"><i class="bx bx-book-content"></i>
                   <span class="team-member"> All Customers </span></a></li>
             </button>
           </form>
 
+          <li
+            onclick="hide_nci_section(), hideStats(),hideTable(), hide_product_section(), hide_customer_section(), hide_stock_form_section(), show_leapord_tracking_section()">
+            <a style="color:darkgrey ;" class="nav-link scrollto"><i class="bx bx-server"></i> <span> Leapord Tracking
+              </span></a>
+          </li>
 
-
-
+          <form method="POST" action="get_nci_for_admin">
+            {% csrf_token %}
+            <!-- <input type="text" name="username" value="{{user.username}}" hidden> -->
+            <!-- <input type="text" name="amiadmin" value="0" hidden > -->
+            <button style="background-color:#040b14;color:darkgrey ;border: none; " type="submit">
+              <li><a onclick="" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>
+                    NCI </span></a></li>
+            </button>
+          </form>
 
           <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
 
@@ -620,24 +684,28 @@
 
 
 
-        <table id="Table" class="table myTable">
+        
+          <div class="row">
+            <div class="col col-6">
+              <input type="text" name="username" value={{user.username}} hidden>
+              <label> <strong> Consignment #: </strong> </label> <br>
 
-          <input type="text" name="username" value={{user.username}} hidden>
-          <label> <strong> Consignment #: </strong> </label> <br>
+              <input id="myInput" onkeyup="searchFunction()"
+                style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+                type="text" name="cn_number" placeholder="Enter CN Number">
 
-          <input id="myInput" onkeyup="searchFunction()"
-            style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
-            type="text" name="cn_number" placeholder="Enter CN Number">
+              <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+              <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+            </div>
 
-          <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
-          <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+          </div>
 
 
           <!-- Data From -->
           <form name="form1" method="POST" action="searchDateWise">
             {% csrf_token %}
             <div class="row">
-              <div class="col-4">
+              <div class="col-5">
 
                 <input type="text" name="username" value={{user.username}} hidden>
                 <label> <strong> Date From: </strong> </label> <br>
@@ -648,7 +716,7 @@
                 <!-- Date From End -->
 
               </div>
-              <div class="col-4">
+              <div class="col-5">
                 <!------------ Date To ------------>
 
                 <label> <strong> Date To: </strong> </label> <br>
@@ -657,18 +725,22 @@
                   type="date" placeholder="dd-mm-yyyy" name="to_date" id="search_td">
                 <br><br>
               </div>
-              <div class="col-4"><br>
+              <div class="col-2"><br>
                 <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
                 </button> <br><br>
               </div>
             </div>
           </form>
 
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
 
-
+          <table style="font-size:x-small ; text-align: center;" id="Table" class=" myTable">
           <thead class="thead-primary">
-            <tr class="header" style="background-color:black ;">
+            <tr class="header" style="background-color:black ; color: white ;">
               <th>CN Number</th>
               <th>Name</th>
               <th>Mobile Number</th>
@@ -692,20 +764,20 @@
 
 
             {% for book in all_bookings%}
-            <tr>
+            <tr style="border-bottom: 1px solid gray ;">
               <td><strong> {{book.cn_number}} </strong> </td>
               <!-- <td>55456400001</td> -->
-              <td> {{book.name}}</td>
+              <td style=" background-color: aliceblue;"> {{book.name}}</td>
               <td> {{book.mobile_number}} </td>
-              <td> {{book.email}} </td>
+              <td style=" background-color: aliceblue;"> {{book.email}} </td>
               <td> {{book.address}}</td>
-              <td> {{book.destination_city}}</td>
+              <td style=" background-color: aliceblue;"> {{book.destination_city}}</td>
               <td> {{book.product_detail}} </td>
-              <td> {{book.weight}} </td>
+              <td style=" background-color: aliceblue;"> {{book.weight}} </td>
               <td> {{book.pieces}} </td>
-              <td> {{book.special_handling}} </td>
+              <td style=" background-color: aliceblue;"> {{book.special_handling}} </td>
               <td> {{book.service_type}} </td>
-              <td> {{book.pickup_city}} </td>
+              <td style=" background-color: aliceblue;"> {{book.pickup_city}} </td>
               <td> {{book.cash_amount}} </td>
 
 
@@ -717,8 +789,9 @@
 
               <form method="POST" action="save_changes">
                 {% csrf_token%}
+                <input type="text" name="reattempt" value="0" hidden>
                 <td>
-                  <select name="status">
+                  <select name="status" style="width: 80px;">
                     <option disabled="disabled" selected="selected" aria-placeholder={{book.status}}> {{book.status}}
                     </option>
                     <option> Booked </option>
@@ -734,11 +807,32 @@
                     <option> Refused by Customer</option>
                     <option> Loaded for Return to Shipper </option>
                     <option> Returned to Shipper </option>
+                    <option> Shipment is hold in operation due to a specific reason </option>
+                    <option> Consignee refused to accept the order </option>
+                    <option> Consignee is not available at provided address </option>
+                    <option> Consignee's address found closed upon attempt </option>
+                    <option> Consignee requested to hold the delivery for a specific time to be delivered on a specific
+                      day </option>
+                    <option> (Non Service Area) or (Consignee's address pertains to area beyond our service list)
+                    </option>
+                    <option> Shipment is hold at destination city to be collected physically from Office </option>
+                    <option> Shipment is undelivered due to non availability of cash with receiving person (Consignee)
+                    </option>
+                    <option> Shipment is undeliverable due to incomplete address </option>
+                    <option> Shipment is on hold for shipper's advice </option>
+                    <option> Unable to locate/Unable to contact </option>
+                    <option> Consignee is out of city and not available at his address </option>
+                    <option> Consignee is permanently shifted from provided address </option>
+                    <option> There is no person matching consignee name at provided address </option>
+                    <option> Held For Self Collection </option>
+                    <option>Arrived at Station </option>
+                    <option>Delivery Address Closed </option>
                   </select>
                 </td>
                 <td> {{book.dateTime}} </td>
                 <td>
                   <input class=" " type="text" name="cn_number" value={{book.cn_number}} readonly hidden>
+                  <!-- <input class=" " type="text" name="username" value="{{book.username}}" readonly hidden> -->
                   <input class=" " type="text" name="product_description" value={{book.product_detail}} readonly hidden>
                   <input class=" " type="text" name="pieces" value={{book.pieces}} readonly hidden>
                   <button class="btn btn-primary" type="submit"> SAVE </button> <br><br>
@@ -747,8 +841,8 @@
 
               </form>
               <form method="POST" action="delete_booking">
-                <input class=" " type="text" name="cn_number" value={{book.cn_number}} readonly hidden>
-                <input class=" " type="text" name="statu" value={{book.status}} readonly hidden>
+                <input class=" " type="text" name="cn_number" value="{{book.cn_number}}"  hidden>
+                <input class=" " type="text" name="statu" value="{{book.status}}"  hidden>
                 <td><button onclick="return confirm('Are you sure you want to DELETE this Record ?')"
                     class="btn btn-danger type=" submit"> DELETE </button> <br><br> </td>
                 {% csrf_token%}
@@ -851,7 +945,7 @@
     <!-- ======== Product Section ========== -->
 
 
-    <section id="product_section" class="">
+    <section id="product_section">
       <div class="table-wrap hero-container ">
         <form method="POST" action="showProducts">
           {% csrf_token %}
@@ -864,9 +958,10 @@
           <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
 
         </form>
-        <table id="productTable" class="table myTable" style="overflow-x: auto; ">
+        <table id="productTable" class="">
           <thead class="thead-primary">
-            <tr class="header" style="background-color:black ;">
+            <tr class="header"
+              style="background-color:black ; color: white; font-weight:lighter; font-size: small; text-align:center;">
               <th>Product Image</th>
               <th>Product Name</th>
               <th>Product Description </th>
@@ -887,11 +982,15 @@
                 <td> <img src='/media/{{prod.product_image}}' width="225" height="225" </td>
                 <td> {{prod.product_name}} </td>
                 <td> {{prod.product_description}} </td>
-                <td> <input type="text" value={{prod.sku}} name="sku" readonly> </td>
-                <td> <input type="text" value={{prod.quantity_given}} name="quantity_given" </td>
-                <td> <input type="text" value={{prod.quantity_in_process}} name="quantity_in_process" </td>
-                <td> <input type="text" value={{prod.quantity_sold}} name="quantity_sold" </td>
-                <td> <input type="text" value={{prod.quantity_available}} name="quantity_available" </td>
+                <td> <input style="width:50px; border:none" type="text" value={{prod.sku}} name="sku" readonly> </td>
+                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_given}}
+                    name="quantity_given" </td>
+                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_in_process}}
+                    name="quantity_in_process" </td>
+                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_sold}}
+                    name="quantity_sold" </td>
+                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_available}}
+                    name="quantity_available" </td>
                 <td> <button class="btn btn-primary" type="submit"> SAVE </button> <br><br> </td>
               </form>
             </tr>
@@ -908,24 +1007,22 @@
 
     <!-- All Customers Section -->
     <section id="all_customers">
-      <table id="customerTable" class="table myTable" style="overflow-x: auto; ">
+      <table id="customerTable" class=" myTable" style="overflow-x: auto; ">
         <thead class="thead-primary">
-          <tr class="header" style="background-color:black ;">
+          <tr class="header" style="background-color:black ; color:white ;">
             <th>Customer Username</th>
             <th>Customer Consignment Id</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {% for each_user in context %}
-          <tr> 
-            <td> {{context.username}} </td>
-            <td> {{context.customer_id}} </td>
+        
+          <tr>
+            <td id="checkForCustomerTable" style="border-right: 1px solid gray ;padding: 5px "> {{context.username}} </td>
+            <td style="padding: 5px "> {{context.customer_id}} </td>
 
           </tr>
-          {% endfor %}
 
-      
         </tbody>
       </table>
 
@@ -935,6 +1032,228 @@
 
 
 
+    <!-- =========== LEAPORD TRACKING SECTION ============ -->
+
+    <section id="leapord_tracking_section">
+
+      <form method="POST" , action="show_api">
+        {% csrf_token %}
+        <input type="text" name="username" value={{user.username}} hidden>
+        <label> <strong> Leapord Tracking #: </strong> </label> <br>
+
+        <input id="myInput" onkeyup="searchFunction()"
+          style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+          type="text" name="leapord_tracking_number" placeholder="Enter Tracking Number">
+
+        <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+        <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
+
+      </form>
+
+      <h4> Tracking Details </h4> <br><br>
+      <hr>
+      <div style="font-size: 12px;">
+        {% for i in tracking_detail %}
+        <div class="row">
+          <div class="col col-6">
+            <label> From </label>
+            <h5> {{i.origin_city_name}} </h5>
+          </div>
+          <div class="col col-6">
+            <label> To </label>
+            <h5> {{i.destination_city_name}} </h5>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="row">
+          <div class="col col-4">
+            <label> <strong> Track # </strong> </label>
+            <input style="border:none ; font-weight:bold;" type="text" name="" value={{i.track_number}} readonly>
+          </div>
+          <div class="col col-8">
+            <label> <strong> Reference # / Order Id </strong> </label>
+            <input style="border:none ;width:400px ;" type="text" name="" value={{i.booked_packet_order_id}} readonly>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-4">
+            <label> <strong> No. of Pieces </strong> </label>
+            <input style="border:none ;" type="text" name="" value={{i.booked_packet_no_piece}} readonly>
+          </div>
+          <div class="col col-8">
+            <label><strong> Packet Weight </strong> </label>
+            <input style="border:none ;width:400px ;" type="text" name="" value={{i.arival_dispatch_weight}} readonly>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-4">
+            <label><strong> Shipper Name </strong> </label>
+            <input style="border:none ;" type="text" name="" value="{{i.shipment_name_eng}}" readonly>
+          </div>
+          <div class="col col-8">
+            <label><strong> Shippment Address</strong> </label>
+            <input style="border:none ;width:400px ;" type="text" name="" value="{{i.shipment_address}}" readonly>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-4">
+            <label><strong> Consignee Name </strong> </label>
+            <input style="border:none ;" id="checkForEmpty" style="color:black ;" type="text" name=""
+              value="{{i.consignment_name_eng}}" readonly>
+          </div>
+          <div class="col col-8">
+            <label> <strong> Consignee Address </strong> </label>
+            <input style="border:none ;width:400px ;" type="text" name="" value="{{i.consignment_address}}" readonly>
+          </div>
+        </div>
+        <label> <strong> Booked Packet Id </strong> </label>
+        <input style="border:none ;width:400px ;" type="text" name="" value="{{i.booked_packet_id}}" readonly>
+
+
+
+        <table id="leapord_tracking_table">
+          <thead>
+            <tr>
+              <th> Date and Time</th>
+              <th> Status </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for j in i.td %}
+
+            <tr>
+              <td><input type="text" name="" value="{{j.Activity_datetime}}" readonly> </td>
+
+              <td> <input style="width:500px ;" type="text" name="" value="{{j.Status}}" readonly> </td>
+            </tr>
+
+            {% endfor %}
+          </tbody>
+          <br><br>
+          {% endfor %}
+
+
+        </table>
+      </div>
+
+
+    </section>
+
+    <!-- =========== LEAPORD TRACKING SECTION END ============ -->
+
+
+
+
+    
+<!-- ============ NCI Section ============== -->
+<section id="nci_section" >
+  <h3> NCI Parcels </h3> <br>
+  <!-- <div class="table-wrap hero-container " >
+    <table style="font-size:x-small ; text-align: center;" id="nciTable" class=" myTable">
+      <thead class="thead-primary">
+        <tr class="header" style="background-color:black ; color: white ;">
+          <th>Username</th>
+          <th>CN Number</th>
+          <th>No. of Active NCI </th>
+          </tr>
+      </thead>
+      <tbody>
+        {% for book in active_nci%}
+        <tr>
+          <td>{{book.username}}</td>
+          <td>{{book.cn_number}}</td>
+          <td>{{book.username}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <br><br> -->
+    <div class="table-wrap hero-container " >
+      <table style="font-size:medium ; text-align: center; width: 100%;" id="nciTable" class=" myTable">
+        <thead class="thead-primary">
+          <tr class="header" style="background-color:black ; color: white ;">
+            <th>CN Number</th>
+            <th>Name</th>
+            <th>Mobile Number</th>
+   
+            <th>Address</th>
+            <th>Vendor's Choice</th>
+            <th>Status</th>
+    
+          </tr>
+        </thead>
+        <tbody>
+          {% if msg == "No Record Found !" %}
+          <td> <h2> {{msg}}</h2> </td>
+          {% endif %}
+          
+          {% for book in active_nci%}
+          <tr style="border-bottom: 1px solid gray ;">
+          
+            <td><strong> {{book.cn_number}} </strong> </td>
+            <td style=" background-color: aliceblue;"> {{book.name}}</td>
+            <td> {{book.mobile_number}} </td>        
+            <td style=" background-color: aliceblue;"> {{book.address}}</td>
+            <td> {{book.choice}}</td>
+            <td style=" background-color: aliceblue;">{{book.status}}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+    <br><br>
+    <form method="POST" action="get_total_reattempts">
+      {% csrf_token %}
+      <button class="btn btn-primary" type="submit"> No. of Re-attempts </button>
+    </form>
+    
+    
+    
+
+</section>
+
+<!-- ============ NCI Section END ============== -->
+
+<!-- ================ Active NCI Section =============== -->
+<section id="active_nci_section">
+  <div class="table-wrap hero-container " >
+    <table style="font-size:medium ; text-align: center; width: 70%;" id="active_nci" class=" myTable">
+      <thead class="thead-primary">
+        <tr class="header" style="background-color:black ; color: white ;">
+        <th> Consignment # </th>
+        <th> Vendor's Username </th>
+        <th> No. of Active NCI's </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for active in list_active_nci %}
+      <tr>
+        <td style=" background-color: aliceblue;">{{active}}</td>
+        <!-- <td style=" background-color: aliceblue;">{{active.cn_list.cn_number}}</td>
+        {% for active0 in active.cn_list%}
+          <td style=" background-color: aliceblue;">{{active0}}</td>
+        {% endfor %}
+        {% for active1 in active.username_list%}
+          <td>{{active1}}</td>
+        {% endfor %}
+        {% for active2 in active.total_active_nci%}
+          <td style=" background-color: aliceblue;">{{active2}}</td>
+        {% endfor %} -->
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+<!-- ================ Active NCI Section END =============== -->
+
   </main>
   <!-- End #main -->
 
@@ -942,20 +1261,17 @@
 
 
   <!-- ======= Footer ======= -->
-  <footer id="footer">
+  <!-- <footer id="footer" style="height: 50px ;">
     <div class="container">
       <div class="copyright">
         &copy; Copyright <strong><span>FulfillKaro.pk</span></strong>
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->
-        Designed by <a href="https://www.fulfillkaro.pk/"> FulfillKaro</a>
+       Designed by <a href="https://www.fulfillkaro.pk/"> FulfillKaro</a>
       </div>
     </div>
-  </footer><!-- End  Footer -->
+  </footer> -->
+  <!-- End  Footer -->
 
   <!-- Vendor JS Files -->
   <script src=' {%static "assets/vendor/aos/aos.js" %}'></script>
