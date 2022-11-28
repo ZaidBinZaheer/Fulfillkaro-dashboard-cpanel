@@ -557,6 +557,22 @@ function abishara(){
 
 }
 
+
+function showOrHideLeapordTrackingSection() {
+      if ($('#leapord_tracking_table td').length == 0) {
+        document.getElementById("leapord_tracking_section").style.display = "none";
+      }
+      else {
+        document.getElementById("leapord_tracking_section").style.display = "block";
+      }
+    }
+
+  function show_leapord_tracking_section() {
+      document.getElementById("leapord_tracking_section").style.display = "block";
+    }
+  function hide_leapord_tracking_section() {
+      document.getElementById("leapord_tracking_section").style.display = "none";
+    }
   </script>
 
 
@@ -564,7 +580,7 @@ function abishara(){
 
 <!-- right-side-content -->
 <body class=""
-  onload="showOrHide_nci_section(), hideReq(), hide_searching_section(), showOrHideMsg(), showOrHideProductSection() , showOrHideStats(), openOrHideBookingForm(), showOrhide_full_detailed_table(), showOrHideLessDetailedTable(), showOrHideLessDetailedTableCnSearch() ">
+  onload="showOrHide_nci_section(), hideReq(), showOrHideLeapordTrackingSection(), hide_searching_section(), showOrHideMsg(), showOrHideProductSection() , showOrHideStats(), openOrHideBookingForm(), showOrhide_full_detailed_table(), showOrHideLessDetailedTable(), showOrHideLessDetailedTableCnSearch() ">
 
   {% for message in messages %}
 
@@ -588,7 +604,7 @@ function abishara(){
       <div class="profile">
         <img src=' {%static "assets/img/fulfillkaro-logo.jpg" %}' alt="" class="img-fluid rounded-circle">
 
-        <h1 class="text-light"> Welcome, {{user.username}} !</h1>
+        <h1 class="text-light"> Welcome, {{user.username}}!</h1>
 
         <div class="social-links mt-3 text-center">
           <!-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> -->
@@ -641,9 +657,9 @@ function abishara(){
 
             <input type="text" name="username" value={{user.username}} hidden>
             <button style="background-color:#040b14;color:darkgrey ;border: none; " type="submit">
-          <li class="" onclick="show_searching_section(), hideStats(), hide_booking_form(), hide_product_section()"><a
+          <li class="" onclick="show_searching_section(), hideStats(),hide_leapord_tracking_section(), hide_booking_form(), hide_product_section()"><a
               class="nav-link scrollto "><i class="bx bx-book-content"></i>
-              <span style="color:darkgrey ;" class="">Track Your Booking </span></a></li>
+              <span style="color:darkgrey ;" class="">Track Your Bookings </span></a></li>
             </button>
           </form>
 
@@ -667,7 +683,6 @@ function abishara(){
             </button>
           </form>
 
-        
 
           <button style="background-color:cornflowerblue;">
             <li><a href="logout" class=""> <span style=" color:black;  ">Logout </span></a></li>
@@ -761,13 +776,13 @@ function abishara(){
   <!-- ========= Search Record Form ============ -->
 
   <section id="searching_section">
-    <form name="form1" method="POST" action="searchRecord">
+    <form name="form1" method="POST" action="show_api">
       {% csrf_token %}
       <input type="text" name="username" value={{user.username}} hidden>
       <label> <strong> Consignment #: </strong> </label> <br>
       <input
         style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
-        type="text" name="cn_number" placeholder="Enter CN Number" id="search_cn">
+        type="text" name="leapord_tracking_number" placeholder="Enter CN Number" id="search_cn">
 
       <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
       </button> <br><br>
@@ -776,15 +791,16 @@ function abishara(){
     </form>
 
     <!-- Data From -->
-    <form name="form1" method="POST" action="searchDateWise">
+    <form name="form1" method="POST" action="searchDateWise2">
+      <!-- <form name="form1" method="POST" action="searchDateWise"> -->
       {% csrf_token %}
       <div class="row">
-        <div class="col-5">
+        <div class="col-4">
 
           <input type="text" name="username" value={{user.username}} hidden>
           <label> <strong> Date From: </strong> </label> <br>
           <input
-            style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+            style=" width:200px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
             type="date" placeholder="dd-mm-yyyy" name="from_date" id="search_fd">
 
           <!-- <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br> -->
@@ -794,12 +810,12 @@ function abishara(){
           <!-- Date From End -->
 
         </div>
-        <div class="col-5">
+        <div class="col-4">
           <!------------ Date To ------------>
 
           <label> <strong> Date To: </strong> </label> <br>
           <input
-            style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+            style=" width:200px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
             type="date" placeholder="dd-mm-yyyy" name="to_date" id="search_td">
           <br><br>
 
@@ -807,6 +823,20 @@ function abishara(){
 
           <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
 
+        </div>
+        <div class="col-2">
+          <label> <strong> Status: </strong> </label> <br>
+          <select name="status" style=" width:100px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); " >
+            <!-- <option disabled="disabled" selected="selected" aria-placeholder={{book.status}}> {{book.status}}
+            </option> -->
+            <option>All Bookings</option>
+            <option>Booked</option>
+            <option> In-Transit </option>
+            <option>Delivered</option>
+            <!-- <option> Refused by Customer</option> -->
+            <option> Returned to Shipper </option>
+            
+          </select>
         </div>
         <div class="col-2"><br>
           <button  style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
@@ -825,9 +855,21 @@ function abishara(){
   <section id="BookingForm">
     <div class="" id="bookingForm">
 
+      <h1 style="font-family:fantasy; text-align: center;">Booking Form</h1>
+      <hr>
+      <div>
+        <form  method="POST" action="bulk_booking" class="booking-form-container" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="text" name="cn_number" value="{{last_cn_num}}" hidden>
+          <label for="fileSelect"> <strong> Upload Excel File For Bulk Booking </strong></label><br>
+          <input name="booking_file" id="fileSelect" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+          <button style="width:fit-content ;" class="btn btn-primary"  type="submit"> Upload </button>
+        </form>
+      </div>
+      <hr>
       <form name="form1" method="POST" action="after_booking" class="booking-form-container">
         {% csrf_token %}
-        <h1 style="font-family:fantasy; text-align: center;">Booking Form</h1><br><br>
+        
         <div class="row">
           <div class="col-6">
             <div class=" ">
@@ -1014,11 +1056,18 @@ function abishara(){
 
 
           </div>
-          <div class="   col-6">
+          <div class="   col-3">
             <div class=" ">
               <label class="label">Cash Amount</label>
               <p class="rq" id="rq_ca">*Required Field </p>
               <input class=" " type="text" name="cash_amount" placeholder="Rs. " id="booking_ca">
+            </div>
+          </div>
+          <div class="   col-3">
+            <div class=" ">
+              <label class="label">Manual Booking </label>
+        
+              <input class=" " value="0" type="number"  name="manual" placeholder="0" id="">
             </div>
           </div>
 
@@ -1073,11 +1122,12 @@ function abishara(){
             <td> {{book.mobile_number}} </td>
             <td style="background-color:aliceblue ;"> {{book.product_detail }} </td>
             <td> {{book.cash_amount}} </td>
-            <form method="POST" action="getLog">
+            <form method="POST" action="show_api">
               {% csrf_token %}
-              <input type="text" name="cn_number" value={{book.cn_number}} hidden>
+              <input type="text" name="username" value={{user.username}} hidden>
+              <input type="text" name="leapord_tracking_number" value={{book.cn_number}} hidden>
 
-              <td style="background-color:aliceblue ;"> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
+              <td style="background-color:aliceblue ;"> <button type="submit" onclick="hide_less_detailed_table()"
                   style=" color:blue ;background-color:aliceblue ; border:none; text-align:left ;"> {{book.status}} </button> </td>
 
             </form>
@@ -1208,7 +1258,7 @@ function abishara(){
             <td> {{rec.cash_amount}} </td>
             <form method="POST" action="getLog">
               {% csrf_token %}
-
+              <input type="text" name="username" value={{user.username}} hidden>
               <input type="text" name="cn_number" value="{{rec.cn_number}}" hidden>
 
               <td style="background-color:aliceblue"> <button type="submit" onclick="show_full_detailed_table(), hide_less_detailed_table()"
@@ -1237,7 +1287,7 @@ function abishara(){
   <!-- =========== Products Section ============== -->
   <section id="product_section" >
     <div class="table-wrap hero-container " >
-    <table id="productTable" class="" style="width: 100% ; font-size:small ;">
+    <table id="productTable" class="myTable" style="width: 100% ; font-size:small ; text-align: center;">
       <thead class="thead-primary">
       <tr class="header" 
       style="background-color:black ; color: white;">
@@ -1254,14 +1304,14 @@ function abishara(){
     <tbody>
       {% for prod in all_Products %}
       <tr>
-        <td style="width:20%;"> <img src='/media/{{prod.product_image}}' width="150" height="150" </td>
-        <td style="width:10% ; background-color: aliceblue;"> {{prod.product_name}} </td>
-        <td style="width:10%;"> {{prod.product_description}} </td>
-        <td style="width:10% ; background-color: aliceblue;"> {{prod.sku}} </td>
-        <td style="width:10%;"> {{prod.quantity_given}} </td>
-        <td style="width:10% ; background-color: aliceblue;"> {{prod.quantity_in_process}} </td>
-        <td style="width:10%;"> {{prod.quantity_sold}} </td>
-        <td style="width:10%; background-color: aliceblue;"> {{prod.quantity_available}} </td>
+        <td > <img src='/media/{{prod.product_image}}' width="120" height="120" </td>
+        <td style=" background-color: aliceblue;"> {{prod.product_name}} </td>
+        <td > {{prod.product_description}} </td>
+        <td style=" background-color: aliceblue;"> {{prod.sku}} </td>
+        <td > {{prod.quantity_given}} </td>
+        <td style=" background-color: aliceblue;"> {{prod.quantity_in_process}} </td>
+        <td > {{prod.quantity_sold}} </td>
+        <td style="background-color: aliceblue;"> {{prod.quantity_available}} </td>
       </tr>
       {% endfor %}
     </tbody>
@@ -1337,6 +1387,119 @@ function abishara(){
 </section>
 
 <!-- ============ NCI Section END ============== -->
+
+
+
+ <!-- =========== LEAPORD TRACKING SECTION ============ -->
+
+ <section id="leapord_tracking_section">
+
+
+
+  <h4> Tracking Details </h4> <br><br>
+  <hr>
+  <div style="font-size: 12px;">
+    {% for i in tracking_detail %}
+    <div class="row">
+      <div class="col col-3">
+        <label> From </label>
+        <h5> {{i.origin_city_name}} </h5>
+      </div>
+      <div class="col col-6">
+        <img src=' {%static "assets/img/delivery.png" %}' width="350" height="130" alt="" >
+      </div>
+      <div class="col col-3">
+        <label> To </label>
+        <h5> {{i.destination_city_name}} </h5>
+      </div>
+    </div>
+  
+    <hr>
+    <br>
+    <div class="row">
+      <!-- <div class="col col-4">
+        <label> <strong> Track # </strong> </label>
+        <input style="border:none ; font-weight:bold;" type="text" name="" value={{i.track_number}} readonly>
+      </div> -->
+      <div class="col col-8">
+        <label> <strong> Reference # / Order Id </strong> </label>
+        <input style="border:none ;width:400px ;" type="text" name="" value={{i.booked_packet_order_id}} readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-4">
+        <label> <strong> No. of Pieces </strong> </label>
+        <input style="border:none ;" type="text" name="" value={{i.booked_packet_no_piece}} readonly>
+      </div>
+      <div class="col col-8">
+        <label><strong> Packet Weight </strong> </label>
+        <input style="border:none ;width:400px ;" type="text" name="" value={{i.arival_dispatch_weight}} readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-4">
+        <label><strong> Shipper Name </strong> </label>
+        <input style="border:none ;" type="text" name="" value="{{i.shipment_name_eng}}" readonly>
+      </div>
+      <div class="col col-8">
+        <label><strong> Shippment Address</strong> </label>
+        <input style="border:none ;width:400px ;" type="text" name="" value="{{i.shipment_address}}" readonly>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col col-4">
+        <label><strong> Consignee Name </strong> </label>
+        <input style="border:none ;" id="checkForEmpty" style="color:black ;" type="text" name=""
+          value="{{i.consignment_name_eng}}" readonly>
+      </div>
+      <div class="col col-8">
+        <label> <strong> Consignee Address </strong> </label>
+        <input style="border:none ;width:400px ;" type="text" name="" value="{{i.consignment_address}}" readonly>
+      </div>
+    </div>
+    <label> <strong> Consignee Mobile Number </strong> </label>
+    <input style="border:none ;width:400px ;" type="text" name="" value="{{i.consignment_phone}}" readonly>
+
+
+
+    <table id="leapord_tracking_table">
+      <thead>
+        <tr>
+          <th> Date and Time</th>
+          <th> Status </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" name="" value="{{i.booking_date}}" readonly></td>
+          <td> <input style="width:500px ;" type="text" name="" value="Posted for Consignment Booking at ISLAMABAD" readonly> </td>
+        </tr>
+        {% for j in i.td %}
+
+        <tr>
+          <td><input type="text" name="" value="{{j.Activity_datetime}}" readonly> </td>
+
+          <td> <input style="width:500px ;" type="text" name="" value="{{j.Status}}" readonly> </td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+      <br><br>
+      {% endfor %}
+
+
+    </table>
+  </div>
+
+
+</section>
+
+<!-- =========== LEAPORD TRACKING SECTION END ============ -->
+
+
 
 
 </main>

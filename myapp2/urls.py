@@ -33,5 +33,11 @@ urlpatterns=[
     path('get_nci_for_admin', views.get_nci_for_admin, name="get_nci_for_admin"),
     # path('get_active_nci_for_admin', views.get_active_nci_for_admin, name="get_active_nci_for_admin"),
     path('get_total_reattempts', views.get_total_reattempts, name="get_total_reattempts"),
-    
+    path('change_nci_status', views.change_nci_status, name="change_nci_status"),
+    path('bulk_booking', views.bulk_booking, name="bulk_booking"),
+    path('change_status_of_selected_bookings', views.change_status_of_selected_bookings, name="change_status_of_selected_bookings"),
+    # path('testing_tracking', views.testing_tracking, name="testing_tracking"),
+    path('searchDateWise2', views.searchDateWise2, name="searchDateWise2"),
+    path('getAge', views.getAge, name="getAge"),
+
     ]

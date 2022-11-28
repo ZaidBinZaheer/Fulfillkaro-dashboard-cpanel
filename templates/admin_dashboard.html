@@ -483,14 +483,24 @@ $(document).ready(function() {
 } );
 
 
+function showOrHideLessDetailedTableCnSearch() {
+
+var x = document.getElementById("tableData").textContent;
+if (x.length < 4) {
+  document.getElementById("less_detailed_table_cn_search").style.display = "none";
+}
+else {
+  document.getElementById("less_detailed_table_cn_search").style.display = "block";
+}
+}
 
   </script>
 
 </head>
 
-<body class="" onload="showOrHide_active_nci_section(), showOrHide_nci_section(), hide_leapord_tracking_section(), hideReq(), showOrHideTable(),showOrHideMsg(), 
+<body class="" onload="showOrHide_active_nci_section(), showOrHide_nci_section(), hideReq(), showOrHideTable(),showOrHideMsg(), 
   showOrHideStats(), showOrHideStockForm(), showOrHideProductSection(), showOrHideCustomerSection()
-  showOrHideLeapordTrackingSection()">
+  showOrHideLeapordTrackingSection(), showOrHideLessDetailedTableCnSearch()">
 
   {% for message in messages %}
   <div hidden class="alert" id="message-box">
@@ -541,7 +551,7 @@ $(document).ready(function() {
           </form>
 
           <li class="" onclick="hideStats(), showTable(), hide_product_section(), hide_leapord_tracking_section()"><a
-              href="done_booking" class="nav-link scrollto "><i class="bx bx-book-content"></i>
+               class="nav-link scrollto "><i class="bx bx-book-content"></i>
               <span style="color:darkgrey ;" class="team-member">View All Bookings </span></a></li>
 
 
@@ -678,7 +688,7 @@ $(document).ready(function() {
 
     <!-- =========== Booking Table =============== -->
     <section id="all-booking" class="">
-      <div class="table-wrap hero-container ">
+      
         <h3 style="text-align: center ; color:blue;">Booking Details </h3>
         <br>
 
@@ -687,14 +697,18 @@ $(document).ready(function() {
         
           <div class="row">
             <div class="col col-6">
-              <input type="text" name="username" value={{user.username}} hidden>
+              <form action="getLog" method="POST">
+                {% csrf_token %}
+                <input type="text" name="username" value={{user.username}} hidden>
+
               <label> <strong> Consignment #: </strong> </label> <br>
 
-              <input id="myInput" onkeyup="searchFunction()"
+              <input id="myInput"
                 style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
                 type="text" name="cn_number" placeholder="Enter CN Number">
 
               <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
+            </form>
               <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
             </div>
 
@@ -705,25 +719,68 @@ $(document).ready(function() {
           <form name="form1" method="POST" action="searchDateWise">
             {% csrf_token %}
             <div class="row">
-              <div class="col-5">
+              <div class="col-4">
 
                 <input type="text" name="username" value={{user.username}} hidden>
                 <label> <strong> Date From: </strong> </label> <br>
                 <input
-                  style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+                  style=" width:200px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
                   type="date" placeholder="dd-mm-yyyy" name="from_date" id="search_fd">
 
                 <!-- Date From End -->
 
               </div>
-              <div class="col-5">
+              <div class="col-4">
                 <!------------ Date To ------------>
 
                 <label> <strong> Date To: </strong> </label> <br>
                 <input
-                  style=" width:250px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
+                  style=" width:200px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); "
                   type="date" placeholder="dd-mm-yyyy" name="to_date" id="search_td">
                 <br><br>
+              </div>
+              <div class="col-2">
+                <label> <strong> Status: </strong> </label> <br>
+                <select name="status" style=" width:100px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); " >
+                  <!-- <option disabled="disabled" selected="selected" aria-placeholder={{book.status}}> {{book.status}}
+                  </option> -->
+                  <option>All Bookings</option>
+                  <option>Manual</option>
+                  <option> Booked </option>
+                  <option> Picked by FulfillKaro </option>
+                  <option> Packed by FulfillKaro </option>
+                  <option> Prepared for Movement to Destination City </option>
+                  <option> Arrival at Origin </option>
+                  <option> Physically Loaded for movement to Destination City </option>
+                  <option> In-Transit </option>
+                  <option> Loading Complete </option>
+                  <option> On the Way to be Deivered </option>
+                  <option>Delivered</option>
+                  <option> Refused by Customer</option>
+                  <option> Loaded for Return to Shipper </option>
+                  <option> Returned to Shipper </option>
+                  <option> Shipment is hold in operation due to a specific reason </option>
+                  <option> Consignee refused to accept the order </option>
+                  <option> Consignee is not available at provided address </option>
+                  <option> Consignee's address found closed upon attempt </option>
+                  <option> Consignee requested to hold the delivery for a specific time to be delivered on a specific
+                    day </option>
+                  <option> (Non Service Area) or (Consignee's address pertains to area beyond our service list)
+                  </option>
+                  <option> Shipment is hold at destination city to be collected physically from Office </option>
+                  <option> Shipment is undelivered due to non availability of cash with receiving person (Consignee)
+                  </option>
+                  <option> Shipment is undeliverable due to incomplete address </option>
+                  <option> Shipment is on hold for shipper's advice </option>
+                  <option> Unable to locate/Unable to contact </option>
+                  <option> Consignee is out of city and not available at his address </option>
+                  <option> Consignee is permanently shifted from provided address </option>
+                  <option> There is no person matching consignee name at provided address </option>
+                  <option> Held For Self Collection </option>
+                  <option>Arrived at Station </option>
+                  <option>Delivery Address Closed </option>
+                  <option> Order was created by mistake </option>
+                </select>
               </div>
               <div class="col-2"><br>
                 <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search
@@ -737,14 +794,17 @@ $(document).ready(function() {
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 
-
+        <div class="table-wrap hero-container ">
           <table style="font-size:x-small ; text-align: center;" id="Table" class=" myTable">
           <thead class="thead-primary">
             <tr class="header" style="background-color:black ; color: white ;">
+              <th></th>
               <th>CN Number</th>
-              <th>Name</th>
+              <th>Customer</th>
+              <th>Age</th>
+              <th>Consignee Name</th>
               <th>Mobile Number</th>
-              <th>Email</th>
+              <th>Reference Number</th>
               <th>Address</th>
               <th>Destination Address</th>
               <th>Product Detail</th>
@@ -763,13 +823,17 @@ $(document).ready(function() {
           <tbody>
 
 
-            {% for book in all_bookings%}
+            {% for book in bookings_log%}
             <tr style="border-bottom: 1px solid gray ;">
-              <td><strong> {{book.cn_number}} </strong> </td>
-              <!-- <td>55456400001</td> -->
+              <td id="cb_"><input class="chk" name="chk" type="checkbox" ></td>
+              <td> {{book.cn_number}} </td>
+              <td style=" background-color: aliceblue;">{{book.username}}  </td>
+              
+              <td> <button class="age_btn" >Refresh</button>   <span class="consign_age">_ days:&nbsp;{{cn_age}}</span> </td>
+          
               <td style=" background-color: aliceblue;"> {{book.name}}</td>
               <td> {{book.mobile_number}} </td>
-              <td style=" background-color: aliceblue;"> {{book.email}} </td>
+              <td style=" background-color: aliceblue;"> {{book.customer_reference_number}} </td>
               <td> {{book.address}}</td>
               <td style=" background-color: aliceblue;"> {{book.destination_city}}</td>
               <td> {{book.product_detail}} </td>
@@ -781,14 +845,10 @@ $(document).ready(function() {
               <td> {{book.cash_amount}} </td>
 
 
-              <!-- <td> <form method="POST" action="delete_booking">
-                {% csrf_token%}
-                <input class="btn btn-danger" type="submit" name="delete_record" value={{book.cn_number}}  readonly >
-                </form> 
-            </td> -->
+             
 
               <form method="POST" action="save_changes">
-                {% csrf_token%}
+                {% csrf_token %}
                 <input type="text" name="reattempt" value="0" hidden>
                 <td>
                   <select name="status" style="width: 80px;">
@@ -827,33 +887,86 @@ $(document).ready(function() {
                     <option> Held For Self Collection </option>
                     <option>Arrived at Station </option>
                     <option>Delivery Address Closed </option>
+                    <option> Order was created by mistake </option>
                   </select>
                 </td>
                 <td> {{book.dateTime}} </td>
                 <td>
-                  <input class=" " type="text" name="cn_number" value={{book.cn_number}} readonly hidden>
+                  <input class=" " type="text" name="cn_number" value="{{book.cn_number}}"  hidden>
                   <!-- <input class=" " type="text" name="username" value="{{book.username}}" readonly hidden> -->
-                  <input class=" " type="text" name="product_description" value={{book.product_detail}} readonly hidden>
-                  <input class=" " type="text" name="pieces" value={{book.pieces}} readonly hidden>
+                  <input class=" " type="text" name="product_description" value="{{book.product_detail}}"  hidden>
+                  <input class=" " type="text" name="pieces" value="{{book.pieces}}"  hidden>
                   <button class="btn btn-primary" type="submit"> SAVE </button> <br><br>
                   <!-- <input class="btn btn-primary" type="submit" name="save_changes" value={{book.cn_number}}  readonly > -->
                 </td>
 
               </form>
+              <td>
               <form method="POST" action="delete_booking">
+                {% csrf_token %}
                 <input class=" " type="text" name="cn_number" value="{{book.cn_number}}"  hidden>
                 <input class=" " type="text" name="statu" value="{{book.status}}"  hidden>
-                <td><button onclick="return confirm('Are you sure you want to DELETE this Record ?')"
-                    class="btn btn-danger type=" submit"> DELETE </button> <br><br> </td>
-                {% csrf_token%}
-              </form>
+               <button onclick="return confirm('Are you sure you want to DELETE this Record ?')"
+                    class="btn btn-danger" type="submit"> DELETE </button> <br><br>
+                
+              </form></td>
+
 
 
             </tr>
             {% endfor %}
 
           </tbody>
+          
         </table>
+        <input type="button" onclick='selects()' value="Select All"/>  
+        <input type="button" onclick='deSelect()' value="Deselect All"/>  
+        <form method="POST" action="change_status_of_selected_bookings">
+          {% csrf_token %}
+        <!-- <button type="button" onclick="GetSelected()">Change</button> -->
+        <input id="getValueFromFunc" type="text" name="cn_nums"  hidden>
+        <button class="btn btn-info" type="submit" onclick="whatMsg(GetSelected())">Change</button>
+        <label> <strong> Status: </strong> </label>
+                <select id="s1" name="status" style=" width:300px;  border-radius:10px;padding:10px; border: 2px; box-shadow:0 0 15px 4px rgba(0,0,0,0.06); " >
+                  <!-- <option disabled="disabled" selected="selected" aria-placeholder={{book.status}}> {{book.status}}
+                  </option> -->
+                  
+                  <option> Booked </option>
+                  <option> Picked by FulfillKaro </option>
+                  <option> Packed by FulfillKaro </option>
+                  <option> Prepared for Movement to Destination City </option>
+                  <option> Arrival at Origin </option>
+                  <option> Physically Loaded for movement to Destination City </option>
+                  <option> In-Transit </option>
+                  <option> Loading Complete </option>
+                  <option> On the Way to be Deivered </option>
+                  <option>Delivered</option>
+                  <option> Refused by Customer</option>
+                  <option> Loaded for Return to Shipper </option>
+                  <option> Returned to Shipper </option>
+                  <option> Shipment is hold in operation due to a specific reason </option>
+                  <option> Consignee refused to accept the order </option>
+                  <option> Consignee is not available at provided address </option>
+                  <option> Consignee's address found closed upon attempt </option>
+                  <option> Consignee requested to hold the delivery for a specific time to be delivered on a specific
+                    day </option>
+                  <option> (Non Service Area) or (Consignee's address pertains to area beyond our service list)
+                  </option>
+                  <option> Shipment is hold at destination city to be collected physically from Office </option>
+                  <option> Shipment is undelivered due to non availability of cash with receiving person (Consignee)
+                  </option>
+                  <option> Shipment is undeliverable due to incomplete address </option>
+                  <option> Shipment is on hold for shipper's advice </option>
+                  <option> Unable to locate/Unable to contact </option>
+                  <option> Consignee is out of city and not available at his address </option>
+                  <option> Consignee is permanently shifted from provided address </option>
+                  <option> There is no person matching consignee name at provided address </option>
+                  <option> Held For Self Collection </option>
+                  <option>Arrived at Station </option>
+                  <option>Delivery Address Closed </option>
+                  <option> Order was created by mistake </option>
+                </select>
+              </form>
 
 
 
@@ -958,10 +1071,10 @@ $(document).ready(function() {
           <button style="margin-left: 5px;" class="btn btn-primary" type="submit"> Search </button> <br><br>
 
         </form>
-        <table id="productTable" class="">
+        <table id="productTable" class=" myTable" style="width:100% ; text-align:center ;">
           <thead class="thead-primary">
             <tr class="header"
-              style="background-color:black ; color: white; font-weight:lighter; font-size: small; text-align:center;">
+              style="background-color:black ; color: white; ">
               <th>Product Image</th>
               <th>Product Name</th>
               <th>Product Description </th>
@@ -973,25 +1086,25 @@ $(document).ready(function() {
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody style="font-size:smaller ;">
             {% for prod in all_Products %}
             <tr>
 
               <form method="POST" action="editProduct">
                 {% csrf_token%}
-                <td> <img src='/media/{{prod.product_image}}' width="225" height="225" </td>
-                <td> {{prod.product_name}} </td>
-                <td> {{prod.product_description}} </td>
-                <td> <input style="width:50px; border:none" type="text" value={{prod.sku}} name="sku" readonly> </td>
-                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_given}}
+                <td style="border:1px solid silver ;background-color: aliceblue;"> <img src='/media/{{prod.product_image}}' width="100" height="100" </td>
+                <td style="border:1px solid silver ;"> {{prod.product_name}} </td>
+                <td style="border:1px solid silver ;background-color: aliceblue;"> {{prod.product_description}} </td>
+                <td style="border:1px solid silver ;"> <input style="width:50px;" type="text" value={{prod.sku}} name="sku" readonly> </td>
+                <td style="border:1px solid silver ;background-color: aliceblue;"> <input style="width:50px;" type="text" value={{prod.quantity_given}}
                     name="quantity_given" </td>
-                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_in_process}}
+                <td style="border:1px solid silver ;"> <input style="width:50px;" type="text" value={{prod.quantity_in_process}}
                     name="quantity_in_process" </td>
-                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_sold}}
+                <td style="border:1px solid silver ;background-color: aliceblue;"> <input style="width:50px;" type="text" value={{prod.quantity_sold}}
                     name="quantity_sold" </td>
-                <td> <input style="width:50px; border:none" type="text" value={{prod.quantity_available}}
+                <td style="border:1px solid silver ;"> <input style="width:50px;" type="text" value={{prod.quantity_available}}
                     name="quantity_available" </td>
-                <td> <button class="btn btn-primary" type="submit"> SAVE </button> <br><br> </td>
+                <td style="border:1px solid silver ;background-color: aliceblue;"> <button class="btn btn-primary" type="submit"> SAVE </button> <br><br> </td>
               </form>
             </tr>
 
@@ -1124,6 +1237,10 @@ $(document).ready(function() {
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><input type="text" name="" value="{{i.booking_date}}" readonly></td>
+              <td> <input style="width:500px ;" type="text" name="" value="Booked" readonly> </td>
+            </tr>
             {% for j in i.td %}
 
             <tr>
@@ -1185,7 +1302,7 @@ $(document).ready(function() {
             <th>Address</th>
             <th>Vendor's Choice</th>
             <th>Status</th>
-    
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -1201,7 +1318,28 @@ $(document).ready(function() {
             <td> {{book.mobile_number}} </td>        
             <td style=" background-color: aliceblue;"> {{book.address}}</td>
             <td> {{book.choice}}</td>
-            <td style=" background-color: aliceblue;">{{book.status}}</td>
+            <!-- <td style=" background-color: aliceblue;">{{book.status}}</td> -->
+            <form method="POST" action="change_nci_status">
+              <input type="text" name="cn_number" value="{{book.cn_number}}" hidden>
+              <!-- <input type="text" name="name" value="{{book.name}}" hidden> -->
+              <input type="text" name="mobile_number" value="{{book.mobile_number}}" hidden>
+              <input type="text" name="address" value="{{book.address}}" hidden>
+              <input type="text" name="choice" value="{{book.choice}}" hidden>
+              {% csrf_token %}
+            <td style=" background-color: aliceblue;">
+              
+                <select name="change_status" style="width: 80px;">
+                  <option disabled="disabled" selected="selected" > {{book.status}}
+                  </option>
+                  <option>active</option>
+                  <option>inactive</option>
+                </select>
+              
+            </td>
+            <td>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </td>
+          </form>
           </tr>
           {% endfor %}
 
@@ -1310,5 +1448,73 @@ $(document).ready(function() {
       }
     }
 
+    function GetSelected() {
+        //Reference the Table.
+        var grid = document.getElementById("Table");
+ 
+        //Reference the CheckBoxes in Table.
+        var checkBoxes = grid.getElementsByTagName("INPUT");
+        var message = "";
+ 
+        //Loop through the CheckBoxes.
+        for (var i = 0; i < checkBoxes.length; i++) {
+            if (checkBoxes[i].checked) {
+                var row = checkBoxes[i].parentNode.parentNode;
+                message += row.cells[1].innerHTML;
+                // message += "   " + row.cells[2].innerHTML;
+                // message += "   " + row.cells[15].innerHTML;
+                message += ", ";
+            }
+        }
+ 
+        //Display selected Row data in Alert Box.
+        // alert("Are you sure you want to change status of: "+message+" ?");
+        return(message)
+    }
+    function whatMsg(msg){
 
+      document.getElementById("getValueFromFunc").value=msg
+      alert("Changing status of CN #: "+msg+" to "+document.getElementById("s1").value)
+    }
+    function selects(){  
+                var ele=document.getElementsByName('chk');  
+                for(var i=0; i<ele.length; i++){  
+                    if(ele[i].type=='checkbox')  
+                        ele[i].checked=true;  
+                }  
+            }  
+    function deSelect(){  
+                var ele=document.getElementsByName('chk');  
+                for(var i=0; i<ele.length; i++){  
+                    if(ele[i].type=='checkbox')  
+                        ele[i].checked=false;  
+                      
+                }  
+            }      
+            
+
+  $('td .age_btn').on("click", function() {
+    var x=$(this);
+  $(this).closest('tr').find('.chk').prop("checked", true);
+  var cn_numbers=GetSelected()
+  // alert(cn_numbers)
+  $.ajax({
+      method: "POST",
+      url: "/getAge",
+      data: {
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        cn_numbers:cn_numbers
+      },
+      
+      success: function(data) {
+     // Update Age
+  
+     x.closest('tr').find('.consign_age').contents()[0].textContent = data.cn_age+" days";
+     x.closest('tr').find('.chk').prop("checked", false);
+        // $('.consign_age').contents()[0].textContent = data.cn_age
+      }
+    }) 
+})
+
+ 
   </script>

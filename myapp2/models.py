@@ -35,6 +35,7 @@ class Product(models.Model):
 class Customer(models.Model):
     username=models.CharField(max_length=50)
     customer_id=models.IntegerField(primary_key=True, default=523544)
+    contact_no=models.CharField(max_length=12, default="920000000000")
     
 
 
@@ -60,6 +61,7 @@ class BookingLog(models.Model):
     pickup_city=models.CharField(max_length=50,default=" ")
     status=models.CharField(max_length=50, default="Booked")
     dateTime=models.CharField(max_length=100, default="2022-10-21 11:57:13")
+    manual=models.IntegerField(default=0)
 
 
 
